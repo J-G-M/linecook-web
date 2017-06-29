@@ -1,0 +1,48 @@
+{
+    "name": "bobz/froots",
+    "type": "wordpress-theme",
+    "license": "MIT",
+    "description": "Responsive WordPress theme with a modern front-end development workflow.",
+    "homepage": "https://www.bobz.co",
+    "authors": [
+        {
+            "name": "Vlado Bosnjak",
+            "email": "vb@bobz.co",
+            "homepage": "https://www.bobz.co"
+        }
+    ],
+    "keywords": [
+        "wordpress"
+    ],
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "advanced-custom-fields/advanced-custom-fields-pro",
+                "version": "5.5.14",
+                "type": "wordpress-plugin",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download"
+                },
+                "require": {
+                    "philippbaschke/acf-pro-installer": "^1.0",
+                    "composer/installers": "^1.0"
+                }
+            }
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "composer/installers": "~1.0",
+        "roots/soil" : ">=3.7.1",
+        "roots/wp-h5bp-htaccess" : ">=2.0.1",
+        "jjgrainger/posttypes": "dev-master",
+        "advanced-custom-fields/advanced-custom-fields-pro": "*"
+    },
+    "extra": {
+        "installer-paths": {
+            "vendor/{$name}": ["vendor/package"]
+        }
+    }
+}

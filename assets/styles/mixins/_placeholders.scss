@@ -1,0 +1,50 @@
+/**
+ * Screen reader text
+ */
+%sr-only {
+	top: auto;
+	left: -10000rem;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+	width: 1px;
+	height: 1px;
+	position: absolute;
+	overflow: hidden;
+}
+
+/**
+ * Links
+ */
+%link {
+	text-decoration: none;
+	@include link-colors(color(brand));
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+%link-invert {
+	text-decoration: underline;
+	@include link-colors(color(brand));
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+
+%rwd-container {
+	height: 0;
+	padding-top: 25px;
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+
+	iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+}

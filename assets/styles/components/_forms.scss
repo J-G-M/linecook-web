@@ -1,0 +1,50 @@
+input,
+button,
+select,
+textarea {
+	color: color(brand);
+	border: none;
+	margin: 0;
+	padding: 0;
+	box-shadow: none;
+	box-sizing: border-box;
+	line-height: 1;
+	border-radius: 0;
+	-webkit-appearance: none;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+
+textarea {
+	padding: 10px 10px 9px;
+	max-width: 100%;
+	min-height: 120px;
+}
+
+input[type=url],
+input[type=tel],
+input[type=text],
+input[type=date],
+input[type=email],
+input[type=search],
+input[type=number],
+input[type=password] {
+	width: 100%;
+	display: block;
+	padding: 10px 10px 9px;
+
+	&:focus {
+		outline-style: ridge;
+		outline-color: color(brand);
+		outline-width: 1px;
+	}
+}
+
+
+button:hover,
+input[type=submit]:hover {
+	cursor: pointer;
+}

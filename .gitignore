@@ -1,0 +1,25 @@
+bower_components
+composer.lock
+dandelion.yaml
+dandelion.yml
+dev.yaml
+dev.yml
+dist
+nginx
+node_modules
+npm-debug.log
+prod.yaml
+prod.yml
+remote
+vendor
+wp-content
+yarn-error.log
+yarn.lock
+lib
+
+# OSX Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
