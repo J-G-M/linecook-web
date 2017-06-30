@@ -31,7 +31,7 @@ if ( ! class_exists('acf') && locate_template('/lib/acf/acf.php') ):
     /**
      * ACF For Nav Menu support
      */
-    // require_once locate_template('/lib/acf-nav/acf-location-nav-menu.php');
+    require_once locate_template('/lib/acf-nav/acf-location-nav-menu.php');
 
 endif;
 

@@ -9,43 +9,25 @@ use Roots\Sage\Wrapper;
 <?php get_template_part('templates/partials/head'); ?>
 	<body <?php body_class(); ?>>
 	<?php
-
 	do_action('get_header');
 	get_template_part('templates/partials/header');
+	?>
+	<div class="wrap">
 
-	if ( has_nav_menu( 'nav_offcanvas' ) ) : ?>
-		<nav class="sidebar-offcanvas">
-			<div class="menu-wrap">
+		<main class="main">
+			<?php include Wrapper\template_path(); ?>
+		</main>
 
-				<?php wp_nav_menu([
-					'theme_location' => 'nav_offcanvas',
-					'menu_class'     => 'nav nav-offcanvas'
-				]); ?>
-
-			</div>
-		</nav>
-	<?php endif; ?>
-
-	<div class="row-offcanvas right">
-		<div class="wrap">
-
-			<main class="main">
-				<?php include Wrapper\template_path(); ?>
-			</main>
-
-			<?php if ( current_theme_supports('nf_sidebar') ) : ?>
-				<aside class="sidebar">
-					<?php get_template_part('templates/partials/sidebar'); ?>
-				</aside>
-			<?php endif; ?>
-		</div>
-
-		<?php
-		do_action('get_footer');
-		get_template_part('templates/partials/footer');
-		?>
+		<?php if ( current_theme_supports('nf_sidebar') ) : ?>
+			<aside class="sidebar">
+				<?php get_template_part('templates/partials/sidebar'); ?>
+			</aside>
+		<?php endif; ?>
 	</div>
-
-	<?php wp_footer(); ?>
+	<?php
+	do_action('get_footer');
+	get_template_part('templates/partials/footer');
+	wp_footer();
+	?>
 	</body>
 </html>

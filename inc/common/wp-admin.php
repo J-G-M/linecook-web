@@ -33,7 +33,9 @@ add_action( 'init', function () {
 	remove_post_type_support('post', 'trackbacks');
 	remove_post_type_support('post', 'custom-fields');
 	remove_post_type_support('post', 'post-formats');
-}, 10 );
+
+	remove_post_type_support('product', 'excerpt');
+}, 1001 );
 
 
 
@@ -47,7 +49,9 @@ add_action( 'admin_menu', function () {
 	remove_meta_box( 'commentstatusdiv', 'page', 'normal' );
 
 	remove_meta_box( 'slugdiv', 'post', 'normal' );
-});
+
+	remove_meta_box( 'postexcerpt', 'product', 'normal' );
+}, 989);
 
 
 /**

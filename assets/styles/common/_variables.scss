@@ -1,13 +1,20 @@
 $white: #fff;
 $black: #000;
 
-$gutter: 30px;
+$gutter: 28px;
 $base-font-size: 16;
 
-$font-default: Helvetica, Arial, sans-serif;
+$font-default: 'Raleway', sans-serif;
 
 $colors: (
-	brand  : #00204e,
+	brand  : #332c29,
+	orange : #ff8b38,
+	text   : #1c1c1c,
+	brown-1: #332c29,
+	brown-2: #201713,
+	grey-1 : rgb(204, 204, 204),
+	grey-2 : rgb(250, 250, 250),
+	grey-3 : #333333,
 );
 
 $breakpoints: (
@@ -28,13 +35,13 @@ $breakpoints: (
 	xxl   : 1360px
 );
 
-$offcanvas-break: map-get($breakpoints, md) - 1px;
+$offcanvas-break: map-get($breakpoints, sm) - 1px;
 
 $susy: (
 	math: fluid,
 	output: float,
 	gutter-position: inside,
-	container: 1200px,
+	container: 1118px,
 	container-position: center,
 	columns: 12,
 	gutters: 0,

@@ -1,0 +1,29 @@
+.wgt-newsletter {
+	text-align: center;
+
+	.container {
+		padding-top: 67px;
+		padding-bottom: 56px;
+	}
+
+	.section-title {
+		margin: 0 0 45px;
+	}
+
+	.h-82 {
+		margin: 0 0 97px;
+	}
+
+	p.button-wrap {
+		margin-bottom: 115px;
+	}
+
+	p {
+		font-weight: 500;
+		@include font(15,24,20);
+	}
+
+	p:empty {
+		display: none;
+	}
+}

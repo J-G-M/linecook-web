@@ -6,7 +6,7 @@
 .container {
 	position: relative;
 	@include container;
-	@include pad( $gutter/2 );
+	@include pad(28px);
 
 	.container {
 		padding-left: 0;
@@ -15,8 +15,8 @@
 }
 
 .row {
-	margin-left: - $gutter/2;
-	margin-right: - $gutter/2;
+	margin-left: -28px;
+	margin-right: -28px;
 	@include susy-clearfix;
 
 	[class^="span-"] {

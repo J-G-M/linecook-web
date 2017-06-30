@@ -8,6 +8,198 @@ class NF_Functions {
 
 
 
+
+
+	/**
+	 * Get Background Image from widget
+	 */
+	public function get_bg_image( $wgt = false ) {
+
+		global $widget;
+
+		$src = false;
+		$img = get_key('bg_image');
+
+		if ( ! $img )
+			return;
+
+		if ( is_numeric($img) )
+			$src = wp_get_attachment_image_src( $img, 'full' );
+
+
+		$style = ' style="background-image: url(' . $src[0] . ')"';
+
+		return $style;
+	}
+
+
+
+
+
+
+
+
+	/**
+	 * Get Image from
+	 * @param  boolean $wgt [description]
+	 * @return [type]       [description]
+	 */
+	public function get_acf_image( $image = [], $size = 'thumbnail', $class = 'img-rwd' ) {
+
+
+		if ( is_numeric($image) )
+			return wp_get_attachment_image( $image, $size );
+
+
+		$w = $image['width'];
+		$h = $image['height'];
+		$s = $image['url'];
+		$a = get_key('alt', $image) ? get_key('alt', $image) : get_key('title', $image);
+		$c = $class;
+
+		if ( get_key($size, $image['sizes']) ) {
+
+			$w = $image['sizes'][$size . '-width'];
+			$h = $image['sizes'][$size . '-height'];
+			$s = $image['sizes'][$size];
+		}
+
+		$img  = '<img src="'.$s.'" alt="'.$a.'" width="'.$w.'" height="'.$h.'" class="'.$c.'" />';
+
+		return $img;
+	}
+
+
+
+
+
+
+
+
+	/**
+	 * Get Button from widget
+	 */
+	public function get_button( $button, $return_url = false ) {
+
+		if ( ! is_array($button) || get_key('btn_type', $button) == 1 )
+			return;
+
+		$id = 'elem-' . rand(99,99999);
+
+		/**
+		 * Button Type
+		 */
+		switch ($button['btn_type']) :
+
+			case 2:
+
+				if ( is_object($button['btn_obj'])) {
+					$url = get_permalink( $button['btn_obj'] );
+				}
+				else {
+					$url = '#';
+				}
+				$open = '_top';
+			break;
+
+			case 3:
+				$url  = $button['btn_url'];
+				$open = '_blank';
+			break;
+
+			case 4:
+
+				if ( is_object($button['btn_file'])) :
+
+					$url  = wp_get_attachment_url( $button['btn_file'] );
+
+				elseif ( get_key($button['btn_file'], 'url')) :
+
+					$url  = $button['btn_file']['url'];
+
+				else :
+					$url  = $button['btn_file'];
+				endif;
+
+				$open = '_blank';
+			break;
+
+
+			case 5:
+				$url  = get_term_link( $button['btn_cat'], 'category' );
+				$open = '_top';
+			break;
+
+			case 6:
+				$url  = '#modal-window';
+				$open = '_top';
+			break;
+
+			default:
+				return false;
+			break;
+		endswitch;
+
+
+		/**
+		 * Return only URL
+		 */
+		if ($return_url) {
+			return $url;
+		}
+
+
+
+
+		switch ( $button['btn_style']) {
+			case 1:
+				$class = 'btn-transparent';
+			break;
+
+			case 2:
+				$class = 'btn-white';
+			break;
+
+			case 3:
+				$class = 'btn-brown';
+			break;
+
+			default:
+				$class = 'btn-brown';
+			break;
+		}
+
+
+		$btn  = '<p class="button-wrap">';
+		$btn .= '<a href="' . $url . '" target="'. $open.'" class="'. $class .'"';
+
+		if ( $button['btn_type'] == 4 ) {
+
+			$btn .= ' download="download"';
+		}
+
+		if ( $button['btn_type'] == 6 ) {
+			$btn .= ' data-modal="' . $id . '"';
+		}
+
+		$btn .= '>';
+		$btn .= '<span>' . $button['btn_title'] . '</span>';
+		$btn .= '</a></p>';
+
+		if ( $button['btn_type'] == 6 ) {
+			$btn .= $this->modal($button['modal_title'], $button['modal_content'], $id);
+		}
+
+		return $btn;
+	}
+
+
+
+
+
+
+
+
 	/**
 	 * Logo
 	 * Returns HTML for logo set in options
@@ -52,6 +244,10 @@ class NF_Functions {
 
 
 
+
+
+
+
 	/**
 	 * Get Selected sidebar for current template
 	 */
@@ -72,6 +268,49 @@ class NF_Functions {
 
 		return $sidebar;
 	}
+
+
+
+
+
+
+
+
+
+
+	/**
+	 * Modal Window
+	 * @param  boolean $title   [description]
+	 * @param  boolean $content [description]
+	 * @return [type]           [description]
+	 */
+	public function modal( $title = false, $content = false, $id = 'modal' ) {
+
+		if ( ! $title && ! $content )
+			return;
+
+
+		ob_start(); ?>
+
+			<div id="<?= $id; ?>" class="modal">
+				<div class="modal-wrap">
+					<header>
+						<?php if ( $title ) echo '<h2>' . $title . '</h2>'; ?>
+						<a href="#close" class="close" data-modal="<?= $id; ?>">Close</a>
+					</header>
+					<main>
+						<?php if ( $content ) echo do_shortcode($content); ?>
+					</main>
+				</div>
+			</div>
+
+		<?php
+
+		return ob_get_clean();
+	}
+
+
+
 
 
 
@@ -100,6 +339,8 @@ class NF_Functions {
 			</ul>
 		<?php endif;
 	}
+
+
 
 
 
@@ -153,6 +394,8 @@ class NF_Functions {
 
 		<?php
 	}
+
+
 
 
 

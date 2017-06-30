@@ -14,10 +14,11 @@
 @import "components/wp-classes";
 
 @import "components/wp-classes";
-@import "components/forms";
 @import "components/buttons";
+@import "components/forms";
 @import "components/offcanvas";
 @import "components/nav";
+@import "components/modal";
 
 @import "layouts/grid";
 @import "layouts/header";
@@ -25,3 +26,9 @@
 @import "layouts/footer";
 
 @import "templates/home";
+
+@import "widgets/wgt";
+@import "widgets/wgt-hero";
+@import "widgets/wgt-editor";
+@import "widgets/wgt-newsletter";
+@import "widgets/wgt-form";

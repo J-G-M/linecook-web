@@ -1,0 +1,59 @@
+.button-wrap {
+	margin: 0;
+}
+
+%btn {
+	display: inline-block;
+	line-height: 0;
+	text-decoration: none;
+}
+
+.btn-transparent {
+	@extend %btn;
+	color: white;
+	border: 2px solid white;
+	padding: 30px 57px;
+	border-radius: 4px;
+	font-size: rem(15);
+	font-weight: 600;
+	text-transform: uppercase;
+	@include link-colors(white);
+
+	&:hover {
+		background: rgba(white, .2);
+	}
+}
+
+.btn-white {
+	@extend %btn;
+	color: color(brown-2);
+	border: 2px solid white;
+	padding: 19px 32px;
+	font-size: rem(14);
+	font-weight: 200;
+	background: white;
+	border-radius: 50px;
+	letter-spacing: spacing(80);
+	@include link-colors(color(brown-2), white);
+
+	&:hover {
+		background: color(brown-1);
+	}
+}
+
+
+.btn-submit {
+	@extend %btn;
+	color: white;
+	border: none;
+	padding: 21px 31px;
+	font-size: rem(14);
+	background: color(brown-2);
+	font-weight: 400;
+	letter-spacing: spacing(80);
+	@include link-colors(white);
+
+	&:hover {
+		opacity: .8;
+	}
+}

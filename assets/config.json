@@ -9,17 +9,16 @@
 			"./styles/admin.scss"
 		]
 	},
-	"watch": [
-		"templates/**/*.php",
-		"admin/**/*.php",
-		"plublic/**/*.php",
-		"includes/**/*.php"
-	],
-	"publicPath"  : "/wp-content/themes/noframework",
-	"devUrl"      : "http://bobz.dev/noframework",
+	"publicPath"  : "/wp-content/themes/linecook",
+	"devUrl"      : "http://toptal.dev/linecook",
 	"proxyUrl"    : "http://localhost:3000",
 	"cacheBusting": "[name]_[hash:8]",
 	"watch": [
-		"{templates, templates/partials, templates/widgets, }/**/*.php"
+		"templates/**/*.php",
+		"templates/partials/**/*.php",
+		"templates/widgets/**/*.php",
+		"inc/**/*.php",
+		"**/*.php",
+		"*.php"
 	]
 }

@@ -1,0 +1,43 @@
+.wgt-hero {
+	text-align: center;
+
+	.container {
+		padding-top: 25px;
+		padding-bottom: 28px;
+	}
+
+	img {
+		margin: 0 auto 29px;
+	}
+
+	.main-title {
+		margin: 0 0 71px;
+	}
+
+	.sub-title {
+		margin: 0 0 26px;
+	}
+
+	.h-18 {
+		color: color(orange);
+		margin: 0 0 19px;
+	}
+
+	.button-wrap {
+		margin: 0 0 71px;
+	}
+
+	p {
+		font-weight: 500;
+		@include font(16,24,80);
+	}
+
+	li {
+		overflow: auto;
+		padding-bottom: 23px;
+	}
+
+	p + p {
+		padding-top: 13px;
+	}
+}

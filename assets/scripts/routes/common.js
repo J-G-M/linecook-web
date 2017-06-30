@@ -1,8 +1,17 @@
+import './functions-common';
+
 export default {
-  init() {
-    // JavaScript to be fired on all pages
-  },
-  finalize() {
-    // JavaScript to be fired on all pages, after page specific JS is fired
-  },
+	init() {
+
+		// Toggle buttons
+		$('[data-toggle]').toggler();
+
+		$('[data-modal]').click( function( event) {
+			if(event.preventDefault) { event.preventDefault(); }
+
+			var id = $(this).data('modal');
+			$('#' + id).toggleClass('active');
+		});
+	},
+	finalize() {},
 };

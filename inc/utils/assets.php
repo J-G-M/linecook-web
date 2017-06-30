@@ -43,19 +43,22 @@ class JsonManifest {
 }
 
 function asset_path($filename) {
-	$dist_path = get_template_directory_uri() . '/dist/';
-	$directory = dirname($filename) . '/';
-	$file = basename($filename);
+	$dist_path = get_stylesheet_directory() . '/dist/';
+	$dist_url  = get_stylesheet_directory_uri() . '/dist/';
+	$file      = basename($filename);
 	static $manifest;
 
 	if (empty($manifest)) {
-		$manifest_path = get_template_directory() . '/dist/' . 'assets.json';
+		$manifest_path = $dist_path . 'assets.json';
 		$manifest = new JsonManifest($manifest_path);
 	}
 
-	if (array_key_exists($file, $manifest->get())) {
-		return $dist_path . $directory . $manifest->get()[$file];
+	$files = $manifest->get();
+
+	if (array_key_exists($filename, $files)) {
+
+		return $dist_url  . $files[$filename];
 	} else {
-		return $dist_path . $directory . $file;
+		return $dist_url . $filename;
 	}
 }

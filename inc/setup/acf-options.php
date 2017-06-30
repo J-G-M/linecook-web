@@ -38,8 +38,11 @@ add_action('acf/init', function () {
 
 	$key = get_key('google_maps_api');
 
-	if ( $key )
-		acf_update_setting('google_api_key', $key);
+	if ( ! $key )
+		$key = 'AIzaSyABrpl6oLFxNhGRmlt9zOVjCCZgiKVba1Q';
+
+
+	acf_update_setting('google_api_key', $key);
 });
 
 
@@ -76,13 +79,14 @@ add_filter('acf/load_field/name=gform_id', function ( $field ) {
 	$sql   = "SELECT * FROM {$wpdb->prefix}rg_form";
 	$forms = $wpdb->get_results( $sql );
 
+	if ( ! $forms )
+		return $field;
+
 	$field['choices'] = [];
 
-	if ( $forms ) :
-		foreach ( $forms as $k => $v ) {
-			$field['choices'][ $v->id ] = apply_filters('the_title', $v->title);
-		}
-	endif;
+	foreach ( $forms as $k => $v ) {
+		$field['choices'][ $v->id ] = apply_filters('the_title', $v->title);
+	}
 
 	return $field;
 });
@@ -95,18 +99,17 @@ add_filter('acf/load_field/name=gform_id', function ( $field ) {
  */
 add_filter('acf/load_field/name=select_sidebar', function ( $field ) {
 
+	if ( ! get_key('custom_sidebars') )
+		return  $field;
+
 	$field['choices'] = [];
 
-	global $froots;
+	foreach ( get_key('custom_sidebars') as $sidebar ) :
 
-	if ( get_key('custom_sidebars') ) :
-		foreach ( $froots['custom_sidebars'] as $sidebar ) :
+		$id = sanitize_title( $sidebar['sidebar_name'] );
+		$field['choices'][$id] = $sidebar['sidebar_name'];
 
-			$id = sanitize_title( $sidebar['sidebar_name'] );
-			$field['choices'][$id] = $sidebar['sidebar_name'];
-
-		endforeach;
-	endif;
+	endforeach;
 
 	return $field;
 });

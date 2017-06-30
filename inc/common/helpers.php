@@ -20,6 +20,8 @@ if ( ! function_exists('get_page_num')) :
 endif;
 
 
+
+
 /**
  * Get value from array key
  */
@@ -27,7 +29,7 @@ if ( ! function_exists('get_key')) :
 
 	function get_key($k, $a = false) {
 
-		global $widget, $froots;
+		global $widget, $nf;
 		$val = false;
 
 
@@ -46,15 +48,15 @@ if ( ! function_exists('get_key')) :
 
 
 		/**
-		 * Get value from froots/widget variable
+		 * Get value from nf/widget variable
 		 */
 		if ( ! $array ) :
 
 			if ( is_array($widget) ) {
 				$array = $widget;
 			}
-			elseif ( is_array($froots)) {
-				$array = $froots;
+			elseif ( is_array($nf)) {
+				$array = $nf;
 			}
 		endif;
 
@@ -82,11 +84,13 @@ if ( ! function_exists('the_key') ) :
 
 	function the_key( $key, $tag = false, $class = false, $array = false ) {
 
-		if ( $array ) {
-			$value = get_key($key, $widget);
-		}
 
-		$val = get_key($key, $widget);
+		if ( is_array($array) ) {
+			$val = get_key($key, $array);
+		}
+		else {
+			$val = get_key($key);
+		}
 
 		if ( ! $val )
 			return;
@@ -184,7 +188,9 @@ endif;
 if ( ! function_exists('printaj')) :
 
 	function printaj( $var ) {
-		print_r('<pre>' . $var . '</pre>');
+		print_r('<pre>');
+		print_r($var);
+		print_r('</pre>');
 	}
 
 endif;
@@ -193,6 +199,8 @@ endif;
 if ( ! function_exists('dumpaj')) :
 
 	function dumpaj( $var ) {
-		var_dump('<pre>' . $var . '</pre>');
+		var_dump('<pre>');
+		var_dump($var);
+		var_dump('</pre>');
 	}
 endif;

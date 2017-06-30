@@ -1,0 +1,21 @@
+.wgt-editor {
+	text-align: center;
+
+	.container {
+		padding-top: 102px;
+		padding-bottom: 28px;
+	}
+
+	.section-title {
+		margin: 0 0 45px;
+	}
+
+	p {
+		font-weight: 400;
+		@include font(15,24,20);
+	}
+
+	p + p {
+		padding-top: 20px;
+	}
+}
