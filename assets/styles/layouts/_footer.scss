@@ -1,0 +1,14 @@
+.row-social {
+	padding: 36px 0;
+	background: color(brown-1);
+}
+
+.row-copyright {
+	color: rgba(white, .3);
+	padding: 70px 0;
+	font-weight: 600;
+	background: color(brown-2);
+	text-align: center;
+	text-transform: uppercase;
+	@include font(15,1);
+}

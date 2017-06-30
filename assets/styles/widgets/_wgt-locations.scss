@@ -1,0 +1,15 @@
+#map {
+	width: 100%;
+	height: 410px;
+}
+
+.wgt-locations {
+	padding-bottom: 40px;
+}
+
+@include susy-media(break(sm)) {
+
+	.wgt-locations {
+		padding-bottom: 103px;
+	}
+}

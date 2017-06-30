@@ -4,8 +4,8 @@
 	width: 100%;
 	z-index: 101;
 	position: absolute;
-	padding-top: $gutter;
-	padding-bottom: $gutter;
+	padding-top: $gutter-xs;
+	padding-bottom: $gutter-xs;
 
 	.logo {
 		margin: 0 auto;
@@ -14,5 +14,37 @@
 
 	& + .wrap .wgt:first-child {
 		padding-top: 103px;
+	}
+}
+
+@include susy-media(0 break(md-1)) {
+	.navbar-main {
+		display: none;
+	}
+}
+
+@include susy-media(break(md)) {
+
+	.nav-mobile {
+		display: none;
+	}
+
+	.header {
+		padding-top: 96px;
+
+		& + .wrap .wgt:first-child {
+			padding-top: 182px;
+		}
+	}
+
+	.header .container {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+
+		> .navbar-main,
+		> .logo {
+			flex: 1;
+		}
 	}
 }

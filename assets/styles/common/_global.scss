@@ -64,3 +64,30 @@ img {
 	font-weight: 200;
 	letter-spacing: spacing(80);
 }
+
+
+
+@include susy-media(break(sm)) {
+	.h-82 {
+		font-size: rem(48);
+	}
+}
+
+
+
+@include susy-media(break(md)) {
+	.h-82 {
+		font-size: rem(62);
+	}
+
+	.section-title {
+		font-size: rem(42);
+	}
+}
+
+
+@include susy-media(break(xl)) {
+	.h-82 {
+		font-size: rem(82);
+	}
+}

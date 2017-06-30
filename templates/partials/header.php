@@ -26,7 +26,7 @@
 
 		<?php if ( has_nav_menu('nav_main_right') ) : ?>
 			<nav class="navbar-main right">
-				<?php wp_nav_menu(['theme_location' => 'nav_main_left', 'menu_class' => 'nav nav-main right', 'container' => false] ); ?>
+				<?php wp_nav_menu(['theme_location' => 'nav_main_right', 'menu_class' => 'nav nav-main right', 'container' => false] ); ?>
 			</nav>
 		<?php endif; ?>
 	</div>

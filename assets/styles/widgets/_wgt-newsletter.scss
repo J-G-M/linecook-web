@@ -15,7 +15,7 @@
 	}
 
 	p.button-wrap {
-		margin-bottom: 115px;
+		margin-bottom: 113px;
 	}
 
 	p {
@@ -26,4 +26,20 @@
 	p:empty {
 		display: none;
 	}
+}
+
+
+@include susy-media(break(md)) {
+
+	.wgt-newsletter {
+		.container {
+			padding-top: 117px;
+			padding-bottom: 157px;
+		}
+
+		.h-82 {
+			margin: 0 0 103px;
+		}
+	}
+
 }

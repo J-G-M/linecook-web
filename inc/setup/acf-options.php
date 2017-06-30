@@ -113,3 +113,21 @@ add_filter('acf/load_field/name=select_sidebar', function ( $field ) {
 
 	return $field;
 });
+
+
+/**
+ * Select Social Network in Theme Options
+ */
+add_filter('acf/load_field/name=network', function ( $field ) {
+
+	$networks         = ['Facebook', 'Instagram', 'Twitter'];
+	$field['choices'] = [];
+
+	if ( $networks ) :
+		foreach ( $networks as $net ) {
+			$field['choices'][ sanitize_title($net) ] = apply_filters('the_title', $net);
+		}
+	endif;
+
+	return $field;
+});

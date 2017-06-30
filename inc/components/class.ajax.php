@@ -18,6 +18,10 @@ class NF_Ajax {
 		add_action('wp_ajax_do_process_form', [$this, 'process_form']);
 		add_action('wp_ajax_nopriv_do_process_form', [$this, 'process_form']);
 
+
+		add_action('wp_ajax_do_get_locations', [$this, 'get_locations']);
+		add_action('wp_ajax_nopriv_do_get_locations', [$this, 'get_locations']);
+
 	}
 
 
@@ -54,6 +58,56 @@ class NF_Ajax {
 		wp_die(json_encode($r));
 	}
 
+
+
+
+
+
+	/**
+	 * Get Locations for map
+	 */
+	public function get_locations() {
+
+		if ( ! check_ajax_referer( 'nonce', 'nonce' ) )
+			wp_die('Verification Failed');
+
+		$locations = [];
+		$r = [
+			'code'   => 501,
+			'errors' => 'Something went wrong, please try again later'
+		];
+
+
+		$qry = new WP_Query([
+			'post_type' => 'location',
+			'posts_per_page' => -1
+		]);
+
+		if ( $qry->have_posts() ) : while( $qry->have_posts() ) : $qry->the_post();
+
+			$locations[] = get_post_meta( get_the_ID(), 'location', true );
+
+		endwhile; else :
+			// Not found
+			$r = [
+				'code'   => 201,
+				'errors' => 'No locations found'
+			];
+		endif;
+
+		// Found
+		if ( $locations ) :
+			$r = [
+				'code'      => 200,
+				'locations' => array_filter($locations)
+			];
+		endif;
+
+		wp_reset_query();
+		wp_reset_postdata();
+
+		wp_die(json_encode($r));
+	}
 
 
 

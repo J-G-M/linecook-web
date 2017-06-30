@@ -2,7 +2,7 @@
 
 	.container {
 		padding-top: 55px;
-		padding-bottom: 28px;
+		padding-bottom: 43px;
 	}
 
 	.section-title {
@@ -12,7 +12,8 @@
 
 	.mailto {
 		color: color(orange);
-		display: inline-block;
+		display: block;
+		text-align: center;
 		font-weight: 500;
 		text-decoration: none;
 		@include font(15,24,20);
@@ -21,4 +22,28 @@
 			text-decoration: underline;
 		}
 	}
+
+	.gform_wrapper {
+		padding-bottom: 29px;
+
+		textarea {
+			height: 105px;
+		}
+	}
+}
+
+
+@include susy-media(break(md)) {
+
+	.wgt-form {
+		.container {
+			padding-top: 75px;
+			padding-bottom: 65px;
+		}
+
+		.section-title {
+			margin: 0 0 75px;
+		}
+	}
+
 }

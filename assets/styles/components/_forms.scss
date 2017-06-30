@@ -23,7 +23,7 @@ textarea {
 	border: 1px solid color(grey-1);
 	padding: 10px 10px 9px;
 	max-width: 100%;
-	min-height: 120px;
+	min-height: 105px;
 	background: color(grey-2);
 	border-radius: 3px;
 
@@ -85,13 +85,34 @@ input[type=submit]:hover {
 	}
 
 	.gform_footer {
+		position: relative;
 		text-align: center;
 		padding-top: 20px;
+	}
+
+	.gform_ajax_spinner {
+		top: 0;
+		left: 50%;
+		z-index: 2;
+		position: absolute;
+		transform: translateX(-50%);
 	}
 
 	.gform_fields li + li {
 		padding-top: 28px;
 	}
+}
+
+.validation_error {
+	padding: 10px;
+	background: rgba(red, .2);
+	border-radius: 4px;
+	margin-bottom: 10px;
+}
+
+.validation_message {
+	color: darken(red, 10);
+	padding-top: 5px;
 }
 
 
@@ -115,5 +136,21 @@ input[type=submit]:hover {
 
 	p + p {
 		padding-top: 28px;
+	}
+}
+
+
+
+@include susy-media(break(md)) {
+
+	.gform_wrapper {
+
+		.gform_fields li + li {
+			padding-top: 31px;
+		}
+
+		.gform_footer {
+			padding-top: 26px;
+		}
 	}
 }

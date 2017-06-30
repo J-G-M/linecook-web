@@ -14,7 +14,7 @@ global $widget;
 		$meals = get_key('meals');
 
 		if ($meals) : ?>
-			<ul>
+			<ul class="meals">
 				<?php foreach ($meals as $meal) : ?>
 					<li>
 						<?= NF()->get_acf_image($meal['image'], 'medium'); ?>

@@ -23,6 +23,10 @@ class NF {
 
 		global $nf;
 
+		if ( ! defined('NF_GMAPS_API')) :
+			define('NF_GMAPS_API', 'AIzaSyDoVervtRaPVCC276PsdPF5flnqrwzkcC4');
+		endif;
+
 
 		/**
 		 * Load Settings

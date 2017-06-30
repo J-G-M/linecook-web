@@ -1,9 +1,9 @@
 .navbar-toggle {
 	top: 50%;
-	left: 0;
+	right: $gutter-xs;
 	width: 30px;
 	height: 16px;
-	margin: 0 0 0 $gutter;
+	margin: 0;
 	border: none;
 	padding: 0;
 	position: absolute;

@@ -41,3 +41,45 @@
 		padding-top: 13px;
 	}
 }
+
+
+@include susy-media(break(sm)) {
+
+	.wgt-hero {
+		.meals {
+			font-size: 0;
+			margin-left: - $gutter-sm/2;
+			margin-right: - $gutter-sm/2;
+		}
+
+		.meals > li {
+			width: span(4);
+			padding: $gutter-sm/2;
+			display: inline-block;
+			vertical-align: top;
+		}
+	}
+}
+
+
+@include susy-media(break(md)) {
+	.wgt-hero {
+
+		.container {
+			padding-top: 65px;
+			padding-bottom: 150px;
+		}
+
+		.main-title {
+			margin: 0 0 121px;
+		}
+
+		.button-wrap {
+			margin: 0 0 111px;
+		}
+
+		.sub-title {
+			margin: 0 0 44px;
+		}
+	}
+}

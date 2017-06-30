@@ -13,6 +13,9 @@ const assetsFilenames = (config.enabled.cacheBusting) ? config.cacheBusting : '[
 const sourceMapQueryStr = (config.enabled.sourceMaps) ? '+sourceMap' : '-sourceMap';
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
+
+const path = require('path');
 
 let webpackConfig = {
 	context: config.paths.assets,
@@ -179,6 +182,11 @@ let webpackConfig = {
 			options: {
 				eslint: { failOnWarning: false, failOnError: true },
 			},
+		}),
+		new SVGSpritemapPlugin({
+			src: path.join(config.paths.assets, '/icons/*.svg'),
+			prefix: '',
+			filename: `/images/sprite.svg`,
 		}),
 	],
 };

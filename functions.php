@@ -56,7 +56,7 @@ endforeach;
 /**
  * Production only Composer includes
  */
-if (WP_ENV !== 'development'):
+/*if (WP_ENV !== 'development'):
 
     $composer = [
         'ApacheServerConfig' => '/lib/h5bp/wp-h5bp-htaccess.php',
@@ -69,7 +69,7 @@ if (WP_ENV !== 'development'):
         }
 
     endforeach;
-endif;
+endif;*/
 
 
 

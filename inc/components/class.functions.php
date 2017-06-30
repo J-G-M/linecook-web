@@ -314,6 +314,43 @@ class NF_Functions {
 
 
 
+	/**
+	 * Get SVG Icon
+	 */
+	public function svg_icon( $icon = false, $return = true ) {
+
+		if ( ! $icon ) {
+			$icon = get_key('select_icon');
+		}
+
+		if ( is_array($icon) ) {
+			$icon = $icon['select_icon'];
+		}
+
+		if ( strpos($icon, '.png') !== false ) :
+
+			$re  = '<span class="png-icon">';
+			$re .= '<img src="' . get_stylesheet_directory_uri() . '/dist/icons/'. $icon .'" alt="'. preg_replace('/\\.[^.\\s]{3,4}$/', '', $icon) .'" />';
+			$re .= '</span>';
+
+		else :
+
+			$re  = '<span class="svg-icon">';
+			$re .= '<svg class="svg-'. $icon .'">';
+			$re .= '<use xlink:href="' . get_stylesheet_directory_uri() . '/dist/images/sprite.svg#'. $icon .'"></use>';
+			$re .= '</svg>';
+			$re .= '</span>';
+
+		endif;
+
+		if ( $return )
+			return $re;
+
+		echo $re;
+	}
+
+
+
 
 
 
@@ -323,14 +360,14 @@ class NF_Functions {
 	 */
 	public function social() {
 
-		$social = get_key('social_profiles');
+		$social = get_key('social_networks');
 
 		if ($social) : ?>
 			<ul class="social">
 				<?php foreach ($social as $s) : ?>
 					<li>
 						<a href="<?= $s['profile_url']; ?>" target="_blank" class="icon-social-<?= $s['network']; ?>">
-							<?php svg_icon($s['network']); ?>
+							<?= $this->svg_icon($s['network']); ?>
 							<span class="sr-only"><?= $s['network']; ?></span>
 						</a>
 					</li>
