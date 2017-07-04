@@ -15,7 +15,7 @@
         $lh: $lh + 100;
     }
 
-    @return (($leading / $font-size) * 100) * 1%;
+    @return (($leading / $font-size) * 100%);
 }
 
 /**

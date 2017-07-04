@@ -57,3 +57,30 @@
 		opacity: .8;
 	}
 }
+
+.button {
+	@extend %btn;
+	color: white;
+	padding: 7px 15px;
+	background: color(brown-4);
+	font-weight: 400;
+	@include link-colors(white);
+	@include font(13,1,60);
+
+	&:hover {
+		opacity: .9;
+	}
+}
+
+.checkout-button,
+.single_add_to_cart_button {
+	padding: 19px 52px 20px;
+	border-radius: 25px;
+}
+
+#place_order,
+.checkout-button {
+	padding: 10px 24px;
+	text-transform: uppercase;
+	border-radius: 25px;
+}

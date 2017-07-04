@@ -26,6 +26,10 @@
 @import "layouts/footer";
 
 @import "templates/home";
+@import "templates/product";
+@import "templates/woocommerce";
+@import "templates/checkout";
+@import "templates/cart";
 
 @import "widgets/wgt";
 @import "widgets/wgt-hero";
@@ -33,3 +37,4 @@
 @import "widgets/wgt-newsletter";
 @import "widgets/wgt-form";
 @import "widgets/wgt-locations";
+@import "widgets/wgt-products";

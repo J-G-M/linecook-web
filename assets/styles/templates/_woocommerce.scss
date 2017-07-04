@@ -1,0 +1,53 @@
+.woocommerce-message {
+	border: 1px solid color(orange);
+	padding: 7px 15px;
+	background: rgba(color(orange), .1);
+	margin-bottom: 15px;
+}
+
+.woocommerce-error {
+	color: darken(red,15);
+	margin: 10px 0;
+	padding: 7px 15px;
+	border-right: 10px solid;
+	background: rgba(red, .1);
+	border-color: red;
+}
+
+.async-status {
+
+
+	&:empty {
+		display: none;
+	}
+
+	&.error {
+		color: darken(red,15);
+		background: rgba(red, .1);
+		border-color: red;
+	}
+
+	&.success {
+		color: darken(green,15);
+		background: rgba(green, .1);
+		border-color: green;
+	}
+
+	&.notice {
+		color: darken(orange,15);
+		background: rgba(orange, .1);
+		border-color: orange;
+	}
+}
+
+
+.woocommerce > .container {
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+.lost_reset_password {
+	margin: 0 auto;
+	padding: 40px 0;
+	max-width: 50%;
+}

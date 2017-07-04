@@ -21,8 +21,8 @@ add_action('after_setup_theme', function () {
 	// Register wp_nav_menu() menus
 	// http://codex.wordpress.org/Function_Reference/register_nav_menus
 	register_nav_menus([
-		'nav_main_left'  => __('Primary Navigation (Left)', 'nof'),
-		'nav_main_right' => __('Primary Navigation (Right)', 'nof'),
+		'nav_main_left'  => __('Primary Navigation: Left', 'nof'),
+		'nav_main_right' => __('Primary Navigation: Right', 'nof'),
 		'nav_mobile'     => __('Mobile Navigation', 'nof'),
 	]);
 
@@ -63,7 +63,7 @@ add_action('wp_enqueue_scripts', function () {
 	 * Include Google Fonts
 	 */
 	$family = [
-		'family' => 'Raleway:200,300,400,500,600'
+		'family' => 'Raleway:600,600italic,700normal,700italic,100,400,500,500italic,200,700,400italic,300,300italic'
 	];
 	wp_enqueue_style( 'nf/font', add_query_arg( $family, "//fonts.googleapis.com/css" ), [], null );
 

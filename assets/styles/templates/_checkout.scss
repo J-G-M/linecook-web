@@ -1,0 +1,62 @@
+.woocommerce-checkout {
+
+	abbr {
+		border: none;
+		text-decoration: none;
+	}
+
+	.woocommerce-info {
+		color: color(text);
+		margin-bottom: 10px;
+		@include font(15,1,20);
+
+		a {
+			color: color(orange);
+		}
+	}
+
+	.checkout {
+		padding-top: 20px;
+	}
+}
+
+.checkout_coupon,
+.woocommerce-form-login {
+	padding-bottom: 30px;
+}
+
+.payment_method_stripe {
+	padding-top: 20px;
+
+	img {
+		display: inline-block;
+		vertical-align: middle;
+	}
+}
+
+.place-order {
+	text-align: right;
+}
+
+.woocommerce-checkout-review-order-table tfoot {
+	text-align: right;
+}
+
+@include susy-media(break(sm)) {
+	.woocommerce-checkout {
+
+		.checkout_coupon,
+		.woocommerce-form-login {
+			max-width: 50%;
+			padding-right: $gutter-sm/2;
+		}
+
+		.row {
+			display: flex;
+
+			> div {
+				width: 50%;
+			}
+		}
+	}
+}

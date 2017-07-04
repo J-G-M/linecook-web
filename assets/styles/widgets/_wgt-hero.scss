@@ -40,6 +40,14 @@
 	p + p {
 		padding-top: 13px;
 	}
+
+	h5 {
+		color: color(orange);
+		margin: 0 auto;
+		max-width: 630px;
+		font-weight: 400;
+		@include font(18,30,60);
+	}
 }
 
 
@@ -80,6 +88,10 @@
 
 		.sub-title {
 			margin: 0 0 44px;
+		}
+
+		&.type-menu .main-title {
+			margin: 0 0 30px;
 		}
 	}
 }

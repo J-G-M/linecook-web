@@ -1,0 +1,158 @@
+.product-loop {
+	text-align: center;
+	margin-top: 30px;
+
+	a {
+		color: color(text);
+		display: block;
+		text-decoration: none;
+		@include link-colors(color(text));
+	}
+
+	.thumb {
+		z-index: 1;
+		position: relative;
+	}
+
+	.stock-status {
+		top: 15px;
+		right: 0;
+		color: white;
+		z-index: 10;
+		display: block;
+		padding: 6px 8px;
+		position: absolute;
+		background: color(grey-4);
+		text-align: center;
+		font-weight: 500;
+		text-transform: uppercase;
+		@include font(14,1,60);
+	}
+
+	.price {
+		display: block;
+	}
+
+	.product-title {
+		color: color(text);
+		margin: 15px 0 0;
+		font-weight: 500;
+		@include font(15,22.5,60);
+
+		.price {
+			font-size: rem(12);
+		}
+	}
+}
+
+
+
+/**
+ * Single Product
+ */
+.woocommerce-product-gallery {
+	z-index: 1;
+	position: relative;
+
+	.woocommerce-product-gallery__trigger {
+		top: 15px;
+		left: 15px;
+		z-index: 10;
+		display: none;
+		position: absolute;
+	}
+
+	img {
+		margin: 0 auto;
+	}
+}
+
+.single-product {
+
+	.container-product {
+		padding-top: 40px;
+		padding-bottom: 52px;
+
+		.row {
+			padding-bottom: 40px;
+		}
+	}
+
+	.input-text.qty {
+		color: color(text);
+		height: 30px;
+		padding: 6px 10px 4px;
+		max-width: 84px;
+		font-size: rem(15);
+		background: white;
+		border-radius: 4px;
+		margin-bottom: 22px;
+	}
+
+	.span-gallery {
+		margin-bottom: 15px;
+	}
+
+	.span-summary h1 {
+		display: none;
+	}
+
+	.span-gallery h1 {
+		margin: 0 0 15px;
+	}
+
+	.price {
+		color: color(brown-2);
+		font-weight: 500;
+	}
+
+	.entry-summary {
+		padding: 10px 0 15px;
+	}
+
+	.entry-summary p {
+		color: color(text);
+		font-weight: 500;
+		@include font(15,26,60);
+	}
+
+	.cart label {
+		font-weight: 500;
+		@include font(15,1,60);
+	}
+
+	.entry-details {
+		padding-top: 40px;
+	}
+
+	.entry-details p {
+		color: color(text);
+		font-weight: 500;
+		@include font(15,26,20);
+	}
+
+	@include susy-media(break(sm)) {
+		.row {
+			font-size: 0;
+		}
+
+		.span-gallery,
+		.span-summary {
+			width: 50%;
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		.span-gallery h1 {
+			display: none;
+		}
+
+		.span-summary h1 {
+			display: block;
+		}
+
+		.entry-details {
+			padding-top: 50px;
+		}
+	}
+}

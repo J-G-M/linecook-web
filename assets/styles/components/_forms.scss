@@ -10,7 +10,6 @@ textarea {
 	box-sizing: border-box;
 	line-height: 1;
 	border-radius: 0;
-	-webkit-appearance: none;
 
 	&:focus {
 		outline: none;
@@ -26,6 +25,7 @@ textarea {
 	min-height: 105px;
 	background: color(grey-2);
 	border-radius: 3px;
+	-webkit-appearance: none;
 
 	&:focus {
 		outline: none;
@@ -49,6 +49,7 @@ input[type=password] {
 	padding: 10px 10px 11px;
 	background: color(grey-2);
 	border-radius: 3px;
+	-webkit-appearance: none;
 
 	&:focus {
 		outline: none;

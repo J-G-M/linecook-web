@@ -3,19 +3,24 @@ $black: #000;
 
 $gutter-xs: 28px;
 $gutter-sm: 22px;
-$base-font-size: 16;
+$base-font-size: 15;
 
 $font-default: 'Raleway', sans-serif;
 
 $colors: (
 	brand  : #332c29,
 	orange : #ff8b38,
+	orange-2: #fe9257,
 	text   : #1c1c1c,
 	brown-1: #332c29,
 	brown-2: #201713,
+	brown-3: #1c1513,
+	brown-4: #272727,
 	grey-1 : rgb(204, 204, 204),
 	grey-2 : rgb(250, 250, 250),
 	grey-3 : #333333,
+	grey-4 : #222222,
+	grey-5 : #dddddd
 );
 
 $breakpoints: (

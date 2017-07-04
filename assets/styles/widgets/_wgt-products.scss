@@ -1,0 +1,23 @@
+.wgt-menu {
+
+	.container {
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
+}
+
+@include susy-media(break(sm)) {
+
+	.wgt-menu {
+
+		.row {
+			font-size: 0;
+		}
+
+		.span-4 {
+			width: span(4);
+			display: inline-block;
+			vertical-align: top;
+		}
+	}
+}

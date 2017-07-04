@@ -3,7 +3,7 @@
 	a {
 		color: white;
 		display: block;
-		padding: 7px 12px;
+		padding: 7px 10px;
 		font-weight: 600;
 		text-align: center;
 		text-transform: uppercase;
@@ -18,21 +18,7 @@
 	}
 }
 
-.nav-mobile {
-	top: 100%;
-	left: 0;
-	width: 100%;
-	position: absolute;
-	background: rgba(color(brown-1), .98);
 
-	a {
-		padding: 15px;
-	}
-
-	li + li {
-		border-top: 1px solid color(brown-2);
-	}
-}
 
 .navbar-main {
 
@@ -48,6 +34,37 @@
 	&.right {
 		padding-left: 22px;
 	}
+}
+
+@include susy-media(0 break(sm-1 )) {
+	.nav-mobile {
+		top: 100%;
+		left: 0;
+		width: 100%;
+		position: absolute;
+		background: rgba(color(brown-1), .98);
+
+		a {
+			padding: 15px;
+		}
+
+		li + li {
+			border-top: 1px solid color(brown-2);
+		}
+	}
+}
+
+@include susy-media(break(sm)) {
+	.nav-mobile {
+		max-height: initial;
+		text-align: center;
+		margin-top: 20px;
+
+		> li {
+			display: inline-block;
+		}
+	}
+
 }
 
 

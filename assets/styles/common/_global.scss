@@ -65,6 +65,27 @@ img {
 	letter-spacing: spacing(80);
 }
 
+.entry-title {
+	font-weight: 200;
+	@include font(34,41,100);
+}
+
+.page-title {
+	margin: 0 0 15px;
+	font-weight: 600;
+	@include font(26,30,20);
+}
+
+figure,
+fieldset {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+.inline {
+	display: inline-block;
+}
 
 
 @include susy-media(break(sm)) {

@@ -3,12 +3,14 @@
 	left: 0;
 	width: 100%;
 	z-index: 101;
-	position: absolute;
-	padding-top: $gutter-xs;
-	padding-bottom: $gutter-xs;
+	position: relative;
+	background: color(brown-3);
+	padding-top: 30px;
+	padding-bottom: 30px;
 
-	.logo {
+	.logo a {
 		margin: 0 auto;
+		display: block;
 		max-width: 180px;
 	}
 
@@ -17,34 +19,75 @@
 	}
 }
 
-@include susy-media(0 break(md-1)) {
+.btn-goto-cart {
+	top: 0;
+	right: $gutter-xs;
+	color: color(brown-3);
+	display: inline-block;
+	padding: 12px;
+	position: fixed;
+	font-weight: 500;
+	background: color(orange-2);
+	text-transform: uppercase;
+	text-decoration: none;
+	@include font(13,1,20);
+	@include link-colors(color(brown-3));
+}
+
+
+.pw-hero .header {
+	position: absolute;
+	background: transparent;
+}
+
+@include susy-media(break(sm)) {
+	.header {
+		padding-top: 45px;
+		padding-bottom: 45px;
+
+		& + .wrap .wgt:first-child {
+			padding-top: 225px;
+		}
+
+		.logo {
+			padding-bottom: 30px;
+		}
+	}
+
+	.navbar-mobile {
+		margin-top: 20px;
+	}
+}
+
+
+@include susy-media(0 break(xl-1)) {
 	.navbar-main {
 		display: none;
 	}
 }
 
-@include susy-media(break(md)) {
+@include susy-media(break(xl)) {
 
-	.nav-mobile {
+	.navbar-mobile {
 		display: none;
-	}
-
-	.header {
-		padding-top: 96px;
-
-		& + .wrap .wgt:first-child {
-			padding-top: 182px;
-		}
 	}
 
 	.header .container {
 		display: flex;
+		flex-flow: row wrap;
 		align-items: center;
 		justify-content: space-around;
 
-		> .navbar-main,
-		> .logo {
-			flex: 1;
+		& + .wrap .wgt:first-child {
+			padding-top: 154px;
+		}
+
+		.navbar-main {
+			width: calc(50% - 90px);
+		}
+
+		.logo {
+			padding-bottom: 5px;
 		}
 	}
 }

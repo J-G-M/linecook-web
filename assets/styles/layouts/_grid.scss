@@ -3,7 +3,8 @@
  */
 @include border-box-sizing;
 
-.container {
+.container,
+.woocommerce {
 	position: relative;
 	@include container;
 	@include pad($gutter-xs);
@@ -15,8 +16,8 @@
 }
 
 .row {
-	margin-left: - $gutter-xs;
-	margin-right: - $gutter-xs;
+	margin-left: - $gutter-xs/2;
+	margin-right: - $gutter-xs/2;
 	@include susy-clearfix;
 
 	[class^="span-"] {

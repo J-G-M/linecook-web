@@ -82,3 +82,59 @@ add_action( 'after_setup_theme', function () {
 add_filter( 'woocommerce_show_page_title' , function () {
 	return false;
 });
+
+
+remove_filter( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+remove_filter( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+remove_filter( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10);
+remove_filter( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15);
+remove_filter( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20);
+
+
+add_filter( 'woocommerce_before_single_product_summary', 'woocommerce_template_single_title', 5);
+add_filter( 'woocommerce_single_product_summary', function() { ?>
+	<div class="entry-summary">
+		<?php the_content(); ?>
+	</div>
+<?php }, 20);
+
+add_filter( 'woocommerce_after_single_product', function() {
+
+	$abt_title = get_post_meta( get_the_ID(), 'wi_section_title', true);
+	$abt_text  = get_post_meta( get_the_ID(), 'wi_content', true);
+
+	if ( ! $abt_title && ! $abt_text )
+		return; ?>
+
+	<div class="entry-details">
+		<?php if ($abt_title) : ?>
+			<h3 class="page-title"><?= $abt_title; ?></h3>
+		<?php endif;
+
+		if ( $abt_text )
+			echo wpautop( $abt_text ); ?>
+	</div>
+<?php }, 10);
+
+
+
+add_filter( 'woocommerce_checkout_fields', function( $fields ) {
+
+	$fields['billing']['billing_state']['required'] = 0;
+	$fields['billing']['billing_phone']['required'] = 0;
+
+	unset( $fields['billing']['billing_state']['validate'] );
+	unset( $fields['billing']['billing_state'] );
+	unset( $fields['billing']['billing_company'] );
+	unset( $fields['billing']['billing_country'] );
+	unset( $fields['billing']['billing_city'] );
+
+
+	$fields['shipping']['shipping_state']['required'] = 0;
+
+	unset( $fields['shipping']['shipping_state']['validate'] );
+	unset( $fields['shipping']['shipping_state'] );
+	unset( $fields['shipping']['shipping_company'] );
+
+	return $fields;
+});

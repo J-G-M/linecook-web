@@ -11,6 +11,8 @@ global $widget;
 		<?= NF()->get_button($widget['button']); ?>
 		<?php the_key('subtitle', 'h2', 'h-82 sub-title');
 
+		the_key('lead', 'h5', 'lead');
+
 		$meals = get_key('meals');
 
 		if ($meals) : ?>
