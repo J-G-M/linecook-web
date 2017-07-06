@@ -149,7 +149,11 @@
                         "class": "",
                         "id": ""
                     },
-                    "choices": [],
+                    "choices": {
+                        "facebook": "Facebook",
+                        "instagram": "Instagram",
+                        "twitter": "Twitter"
+                    },
                     "default_value": [],
                     "allow_null": 0,
                     "multiple": 0,
@@ -210,6 +214,28 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
+        },
+        {
+            "key": "field_595d18bd00d96",
+            "label": "Page Menu",
+            "name": "page_menu",
+            "type": "post_object",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "page"
+            ],
+            "taxonomy": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "return_format": "object",
+            "ui": 1
         }
     ],
     "location": [
@@ -229,5 +255,6 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1498756820
+    "menu_item_level": "all",
+    "modified": 1499273430
 }

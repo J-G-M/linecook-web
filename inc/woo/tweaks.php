@@ -1,5 +1,5 @@
 <?php if (!defined('ABSPATH')) {
-    exit;
+	exit;
 }
 
 
@@ -61,7 +61,7 @@ add_action( 'wp_enqueue_scripts', function () {
 		wp_dequeue_script( 'jquery-payment' );
 		wp_dequeue_script( 'fancybox' );
 		wp_dequeue_script( 'jqueryui' );
-  	endif;
+	endif;
 }, 99 );
 
 
@@ -118,6 +118,9 @@ add_filter( 'woocommerce_after_single_product', function() {
 
 
 
+/**
+ * Checkout customization
+ */
 add_filter( 'woocommerce_checkout_fields', function( $fields ) {
 
 	$fields['billing']['billing_state']['required'] = 0;
@@ -137,4 +140,133 @@ add_filter( 'woocommerce_checkout_fields', function( $fields ) {
 	unset( $fields['shipping']['shipping_company'] );
 
 	return $fields;
+});
+
+
+/**
+ * Add the field to the checkout
+ */
+add_action( 'woocommerce_after_checkout_billing_form', function ( $checkout ) {
+
+	$locations = get_posts( ['post_type' => 'location', 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC'] );
+
+	if ( $locations ) {
+		foreach ($locations as $location) {
+			$times = NF()->get_pickup_time($location->ID);
+
+			$select_loc[$location->ID] = apply_filters( 'the_title', $location->post_title );
+			$location_data[$location->ID] = $times;
+
+		}
+	}
+
+	ob_start(); ?>
+
+	<div id="pickup_location_wrap">
+		<h2><?= __('Pickup Information'); ?></h2>
+
+		<div class="row">
+
+			<p class="span-12">
+				<label>Pickup Location</label>
+				<span class="input-select">
+					<select name="pickup_location" id="pickup_location">
+						<option value="0">Select Location</option>
+						<?php foreach ( $select_loc as $id => $title ) : ?>
+							<option value="<?= $id; ?>" data-id="<?= $id; ?>"><?= $title; ?></option>
+						<?php endforeach; ?>
+					</select>
+				</span>
+			</p>
+
+			<p class="span-6">
+				<label>Pickup Day</label>
+				<span class="input-select">
+					<select name="pickup_day" id="pickup_day">
+						<option value="0">Select Day</option>
+					</select>
+				</span>
+			</p>
+
+			<p class="span-6">
+				<label>Pickup Time</label>
+				<span class="input-select">
+					<select name="pickup_time" id="pickup_time">
+						<option value="0">Select Time</option>
+					</select>
+				</span>
+			</p>
+		</div>
+
+		<input type="hidden" name="location_data" id="location_data" value="<?= htmlspecialchars(json_encode($location_data)); ?>">
+
+	</div>
+
+	<?php echo ob_get_clean();
+
+});
+
+
+/**
+ * Process the checkout
+ */
+add_action('woocommerce_checkout_process', function () {
+
+	if ( ! $_POST['pickup_location']  || ! $_POST['pickup_day'] || ! $_POST['pickup_time'] )
+		wc_add_notice( __( 'Please Select Pickup location, date and time.' ), 'error' );
+});
+
+
+/**
+ * Update the order meta with field value
+ */
+add_action( 'woocommerce_checkout_update_order_meta', function ( $order_id ) {
+
+	$location    = isset($_POST['pickup_location']) ? intval($_POST['pickup_location']) : false;
+	$pickup_day  = isset($_POST['pickup_day']) ? sanitize_text_field($_POST['pickup_day']) : '';
+	$pickup_time = isset($_POST['pickup_time']) ? sanitize_text_field($_POST['pickup_time']) : '';
+	$pickup      = trim( $pickup_day . ' ' . $pickup_time ) ;
+
+	if ( ! empty( $location ) ) {
+		update_post_meta( $order_id, 'pickup_location',  $location );
+	}
+
+	if ( ! empty( $pickup ) ) {
+		update_post_meta( $order_id, 'pickup_day_time',  $pickup );
+	}
+});
+
+
+/**
+ * Display field value on the order edit page
+ */
+add_action( 'woocommerce_admin_order_data_after_billing_address', function ($order){
+
+	$location = get_post_meta( $order->id, 'pickup_location', true );
+	$pickup   = get_post_meta( $order->id, 'pickup_day_time', true );
+
+	if ( $location ) {
+		$post = get_post($location);
+
+		echo '<p><strong>'.__('Pickup Location').':</strong> ' . apply_filters( 'the_title', $post->post_title ) . '</p>';
+	}
+
+
+	if ( $pickup ) {
+		echo '<p><strong>'.__('Pickup Day and Time').':</strong> ' . apply_filters( 'the_title', $pickup ) . '</p>';
+	}
+
+
+}, 10, 1 );
+
+
+/**
+ * Adding custom fields to emails
+ */
+add_filter('woocommerce_email_order_meta_keys', function ( $keys ) {
+
+	$keys[] = 'pickup_location';
+	$keys[] = 'pickup_day_time';
+
+	return $keys;
 });

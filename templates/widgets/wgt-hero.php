@@ -5,7 +5,7 @@ global $widget;
 
 ?>
 
-<section class="<?= $widget['class']; ?>"<?= NF()->get_bg_image(); ?>>
+<section class="<?= $widget['class']; ?>"<?= NF()->get_bg_image(); ?><?= NF()->get_section_id(); ?>>
 	<div class="container">
 		<?php the_key('title', 'h1', 'h-82 main-title'); ?>
 		<?= NF()->get_button($widget['button']); ?>

@@ -14,8 +14,50 @@ export default {
 			var id = $(this).data('modal');
 			$('#' + id).toggleClass('active');
 		});
+
+
+		/**
+		 * Checkout page location
+		 */
+		$('#pickup_location, #pickup_day').change( function(event) {
+
+			var data = jQuery.parseJSON( $('#location_data').val() );
+			var id   = $('#pickup_location').find('option:selected').data('id');
+			var day  = $('#pickup_day').find('option:selected').val();
+
+			if ( $(this).attr('name') === 'pickup_location' ) {
+
+				$('#pickup_day').html('<option value="0">Select Day</option>');
+
+				$.each( data[id].days, function(index, val) {
+					$('#pickup_day').append('<option value="'+val+'">'+val+'</option>');
+				});
+			}
+			else if ( $(this).attr('name') === 'pickup_day' ) {
+
+				$('#pickup_time').html('<option value="0">Select Time</option>');
+
+				$.each( data[id][day], function(index, val) {
+					$('#pickup_time').append('<option value="'+val+'">'+val+'</option>');
+				});
+			}
+		});
 	},
 	finalize() {
+
+		$('[data-scroll-to]').click( function(event) {
+
+			var id = '#' + $(this).attr('data-scroll-to');
+
+			if ( $(id).length ) {
+
+				if(event.preventDefault) { event.preventDefault(); }
+
+				$('html, body').animate({
+					scrollTop: parseInt( $(id).offset().top ),
+				}, 800);
+			}
+		});
 
 		/**
 		 * Generate Markers and bounds from user list

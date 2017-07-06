@@ -41,12 +41,14 @@
 }
 
 
-.woocommerce > .container {
+.woocommerce > .container,
+.woocommerce-page .main > .woocommerce {
 	padding-top: 40px;
 	padding-bottom: 40px;
 }
 
-.lost_reset_password {
+.lost_reset_password,
+.my-account .woocommerce-form-login {
 	margin: 0 auto;
 	padding: 40px 0;
 	max-width: 50%;

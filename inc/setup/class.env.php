@@ -27,7 +27,7 @@ class NF {
 			define('NF_GMAPS_API', 'AIzaSyDoVervtRaPVCC276PsdPF5flnqrwzkcC4');
 		endif;
 
-
+		add_filter('walker_nav_menu_start_el', [$this, 'scrollTo_menu'], 9999, 4);
 		/**
 		 * Load Settings
 		 */
@@ -111,7 +111,29 @@ class NF {
 
 
 
+	/**
+	 * Add Icon to WP Nav menu
+	 */
+	public function scrollTo_menu ($item_output, $item, $depth, $args) {
 
+		$section = trim(get_post_meta($item->ID, 'scroll_to', true));
+
+		//printaj($section);
+
+		// printaj($section);
+
+		if ( $section ) {
+			$output  = '<a href="#'. sanitize_title($section) .'" data-scroll-to="'. sanitize_title($section) .'">';
+		}
+		else {
+			$output  = '<a href="'. get_permalink( $item->object_id ) .'">';
+		}
+
+		$output .= $item->title;
+		$output .= '</a>';
+
+		return $output;
+	}
 
 
 

@@ -28,35 +28,37 @@
 	span {
 		left: 2px;
 		right: 2px;
-		height: 3px;
+		height: 2px;
 		display: block;
 		position: absolute;
-		transition: background 0s .2s;
+		transition: background .2s .2s;
 		background: white;
 		text-indent: -999em;
+		border-radius: 2px;
 
 		&:after,
 		&:before {
 			left: 0;
 			right: 2px;
 			width: 100%;
-			height: 3px;
+			height: 2px;
 			content: '';
 			display: block;
 			position: absolute;
+			transform: rotate(0);
 			background: white;
-			transition-delay: .2s, 0s;
-			transition-duration: .2s, .2s;
+			border-radius: 2px;
+			transform-origin: 50%;
 		}
 
 		&:before {
 			top: 7px;
-			transition-property: top, transform;
+			transition: top .1s ease-out .2s, transform .2s ease-out .1s;
 		}
 
 		&:after {
 			bottom: 7px;
-			transition-property: bottom, transform;
+			transition: bottom .1s ease-out .2s, transform .2s ease-out .1s;
 		}
 	}
 
@@ -72,18 +74,20 @@
 	}
 
 	span {
+		transition: background .2s .2s;
 		background: none;
+		transform-origin: 40%;
 
 		&:before {
 			top: 0;
 			transform: rotate(-45deg);
-			transition-delay: 0s, .2s;
+			transition: top .2s ease 0s, transform .15s ease-in .2s;
 		}
 
 		&:after {
 			bottom: 0;
 			transform: rotate(45deg);
-			transition-delay: 0s, .2s;
+			transition: bottom .2s ease 0s, transform .15s ease-in .2s;
 		}
 	}
 

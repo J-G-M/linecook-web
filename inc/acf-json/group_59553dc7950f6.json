@@ -6,8 +6,8 @@
             "key": "field_59553dd7610c0",
             "label": "Scroll To Section",
             "name": "scroll_to",
-            "type": "number",
-            "instructions": "Make this menu item scroll to section instead of opening new page. Enter Section order number",
+            "type": "text",
+            "instructions": "Make this menu item scroll to section instead of opening new page. Enter Section ID",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -19,9 +19,7 @@
             "placeholder": "",
             "prepend": "",
             "append": "",
-            "min": "",
-            "max": "",
-            "step": ""
+            "maxlength": ""
         }
     ],
     "location": [
@@ -42,5 +40,5 @@
     "active": 1,
     "description": "",
     "menu_item_level": "all",
-    "modified": 1498758658
+    "modified": 1499259331
 }

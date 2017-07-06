@@ -48,6 +48,22 @@ img {
 	max-width: 100%;
 }
 
+a {
+	color: color(orange);
+	font-weight: 500;
+	text-decoration: none;
+	@include link-colors(color(orange));
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+abbr {
+	border: none;
+	text-decoration: none;
+}
+
 .h-82 {
 	font-weight: 200;
 	@include font(36);

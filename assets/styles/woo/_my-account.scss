@@ -1,0 +1,16 @@
+.woocommerce-MyAccount-content {
+	padding-top: 40px;
+
+	.my_account_orders {
+		text-align: center;
+	}
+
+	form {
+		margin: 0 auto;
+		max-width: 50%;
+	}
+
+	h3 {
+		@extend .page-title;
+	}
+}

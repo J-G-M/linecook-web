@@ -4,7 +4,7 @@
 @include border-box-sizing;
 
 .container,
-.woocommerce {
+.main > .woocommerce {
 	position: relative;
 	@include container;
 	@include pad($gutter-xs);
@@ -20,7 +20,7 @@
 	margin-right: - $gutter-xs/2;
 	@include susy-clearfix;
 
-	[class^="span-"] {
+	[class*="span-"] {
 		position: relative;
 		padding-left: $gutter-xs/2;
 		padding-right: $gutter-xs/2;

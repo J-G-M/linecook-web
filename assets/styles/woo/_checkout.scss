@@ -1,10 +1,5 @@
 .woocommerce-checkout {
 
-	abbr {
-		border: none;
-		text-decoration: none;
-	}
-
 	.woocommerce-info {
 		color: color(text);
 		margin-bottom: 10px;
@@ -40,6 +35,23 @@
 
 .woocommerce-checkout-review-order-table tfoot {
 	text-align: right;
+}
+
+#pickup_location_wrap {
+	padding-top: 40px;
+
+	.row {
+		display: flex;
+		flex-flow: row wrap;
+	}
+
+	.span-12 {
+		width: 100%;
+	}
+
+	.span-6 {
+		width: 50%;
+	}
 }
 
 @include susy-media(break(sm)) {

@@ -25,6 +25,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div id="product-<?php the_ID(); ?>" class="container container-product">
 
 	<?php
+		$page = get_key('page_menu');
+
+		if ( $page ) : ?>
+			<h3 class="page-subtitle"><a href="<?= get_permalink($page->ID); ?>">&#8592; Back to <?= apply_filters( 'the_title', $page->post_title ); ?></a></h3>
+		<?php endif;
+
 		/**
 		 * woocommerce_before_single_product hook.
 		 *

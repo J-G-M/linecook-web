@@ -15,10 +15,11 @@ add_action('admin_init', function () {
 
 add_action('after_setup_theme', function () {
 
-	if ( ! current_user_can('administrator') && !is_admin())
+	if ( ! current_user_can('manage_options') && !is_admin() )
 		show_admin_bar(false);
 
 });
+
 
 
 add_action( 'init', function () {
@@ -165,7 +166,7 @@ add_action( 'login_enqueue_scripts', function () {
 
 	<style type="text/css">
 		body.login {
-			background: #efefef;
+			background: #1c1513;
 		}
 
 		#loginform {

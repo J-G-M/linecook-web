@@ -34,6 +34,7 @@ textarea {
 	}
 }
 
+select,
 input[type=url],
 input[type=tel],
 input[type=text],
@@ -46,7 +47,7 @@ input[type=password] {
 	height: 40px;
 	border: 1px solid color(grey-1);
 	display: block;
-	padding: 10px 10px 11px;
+	padding: 11px 10px 10px;
 	background: color(grey-2);
 	border-radius: 3px;
 	-webkit-appearance: none;
@@ -76,6 +77,46 @@ input[type=submit]:hover {
 	cursor: pointer;
 }
 
+
+.input-select {
+	display: block;
+	position: relative;
+	background: color(grey-2);
+
+	select {
+		display: block;
+		z-index: 5;
+		position: relative;
+		background: none;
+		padding-right: 45px;
+	}
+
+	&:after,
+	&:before {
+		top: 50%;
+		right: 15px;
+		width: 0;
+		height: 0;
+		content: '';
+		display: block;
+		z-index: 3;
+		position: absolute;
+	}
+
+	&:before {
+		margin-top: -6px;
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		border-bottom: 5px solid black;
+	}
+
+	&:after {
+		margin-top: 3px;
+		border-top: 5px solid black;
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+	}
+}
 
 /**
  * Gravity Forms

@@ -50,6 +50,20 @@
 /**
  * Single Product
  */
+.page-subtitle {
+	color: rgba(black, .5);
+	margin: 0 0 40px;
+	text-align: center;
+	font-weight: 500;
+	text-transform: uppercase;
+	@include font(14,1,140);
+
+	a {
+		text-decoration: none;
+		@include link-colors(rgba(black, .5));
+	}
+}
+
 .woocommerce-product-gallery {
 	z-index: 1;
 	position: relative;

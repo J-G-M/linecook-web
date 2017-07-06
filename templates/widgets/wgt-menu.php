@@ -11,7 +11,7 @@ $args = [
 $qry  = new WP_Query($args);
 
 if ($qry->have_posts() ) : ?>
-<section class="<?= $widget['class']; ?>"<?= NF()->get_bg_image(); ?>>
+<section class="<?= $widget['class']; ?>"<?= NF()->get_bg_image(); ?><?= NF()->get_section_id(); ?>>
 	<div class="container">
 		<ul class="row">
 			<?php while ( $qry->have_posts() ) : $qry->the_post(); ?>

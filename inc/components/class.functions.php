@@ -7,6 +7,28 @@ class NF_Functions {
 
 
 
+	public function get_pickup_time( $post_id ) {
+
+		$times = get_field('pickup_times', $post_id);
+
+		if ( ! $times )
+			return;
+
+
+		foreach ($times as $key => $data) {
+
+			if ( $data['active'] == 1 ) {
+
+				$schedule['days'][] = $data['day'];
+				$schedule[$data['day']] = array_map( 'trim', explode(',', $data['hour']) );
+			}
+
+		}
+
+
+		return $schedule;
+	}
+
 
 
 
@@ -30,6 +52,26 @@ class NF_Functions {
 		$style = ' style="background-image: url(' . $src[0] . ')"';
 
 		return $style;
+	}
+
+
+
+
+	/**
+	 * Get Background Image from widget
+	 */
+	public function get_section_id( $wgt = false ) {
+
+		global $widget;
+
+		$section_id = get_key('section_id');
+
+		if ( ! $section_id )
+			return;
+
+		$id = ' id="' . sanitize_title( $section_id ) . '"';
+
+		return $id;
 	}
 
 

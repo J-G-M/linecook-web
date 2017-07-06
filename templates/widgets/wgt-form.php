@@ -3,7 +3,7 @@
 
 global $widget; ?>
 
-<section class="<?= $widget['class']; ?>">
+<section class="<?= $widget['class']; ?>"<?= NF()->get_section_id(); ?>>
 	<div class="container">
 		<?php the_key('section_title', 'h2', 'section-title'); ?>
 		<?php gravity_form( $widget['gform_id'], false,false,false,null, true, 1, true ); ?>

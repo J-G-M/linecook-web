@@ -1,4 +1,5 @@
-.nav {
+.nav,
+.woocommerce-MyAccount-navigation {
 
 	a {
 		color: white;
@@ -12,9 +13,24 @@
 		@include font(14,1,80);
 	}
 
+	.is-active > a,
 	li.active > a {
 		color: color(orange);
 		@include link-colors(color(orange));
+	}
+}
+
+.woocommerce-MyAccount-navigation {
+	background: color(brown-1);
+
+	ul {
+		margin: 0;
+		padding: 5px;
+		list-style: none;
+
+		li {
+			display: inline-block;
+		}
 	}
 }
 
