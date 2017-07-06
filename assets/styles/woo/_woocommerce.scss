@@ -14,33 +14,6 @@
 	border-color: red;
 }
 
-.async-status {
-
-
-	&:empty {
-		display: none;
-	}
-
-	&.error {
-		color: darken(red,15);
-		background: rgba(red, .1);
-		border-color: red;
-	}
-
-	&.success {
-		color: darken(green,15);
-		background: rgba(green, .1);
-		border-color: green;
-	}
-
-	&.notice {
-		color: darken(orange,15);
-		background: rgba(orange, .1);
-		border-color: orange;
-	}
-}
-
-
 .woocommerce > .container,
 .woocommerce-page .main > .woocommerce {
 	padding-top: 40px;
@@ -51,5 +24,9 @@
 .my-account .woocommerce-form-login {
 	margin: 0 auto;
 	padding: 40px 0;
-	max-width: 50%;
+	max-width: 480px;
+
+	@include susy-media(break(sm)) {
+		max-width: 50%;
+	}
 }

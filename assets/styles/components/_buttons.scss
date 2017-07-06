@@ -42,7 +42,8 @@
 }
 
 
-.btn-submit {
+.btn-submit,
+.search-submit {
 	@extend %btn;
 	color: white;
 	border: none;

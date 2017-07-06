@@ -118,9 +118,6 @@ class NF {
 
 		$section = trim(get_post_meta($item->ID, 'scroll_to', true));
 
-		//printaj($section);
-
-		// printaj($section);
 
 		if ( $section ) {
 			$output  = '<a href="#'. sanitize_title($section) .'" data-scroll-to="'. sanitize_title($section) .'">';

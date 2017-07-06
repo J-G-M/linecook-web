@@ -27,6 +27,11 @@ body {
 	transition: max-height .3s ease-out;
 }
 
+img[src$=".svg"] {
+	width: 100%;
+	height: 100%;
+}
+
 
 h1, h2, h3 {
 	margin-top: 0;

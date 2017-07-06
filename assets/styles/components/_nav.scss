@@ -34,7 +34,38 @@
 	}
 }
 
+.navbar-user {
+	top: 0;
+	right: 20px;
+	margin: 0;
+	padding: 0;
+	position: fixed;
 
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	ul li {
+		display: inline-block;
+	}
+
+	ul li + li {
+		margin-left: 3px;
+	}
+
+	a {
+		color: color(text);
+		display: block;
+		padding: 9px 12px;
+		background: color(orange);
+		text-transform: uppercase;
+		text-decoration: none;
+		@include font(13,1,20);
+		@include link-colors(color(text));
+	}
+}
 
 .navbar-main {
 

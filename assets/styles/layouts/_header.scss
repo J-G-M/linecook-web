@@ -5,7 +5,7 @@
 	z-index: 101;
 	position: relative;
 	background: color(brown-3);
-	padding-top: 30px;
+	padding-top: 45px;
 	padding-bottom: 30px;
 
 	.logo a {
@@ -38,6 +38,10 @@
 .pw-hero .header {
 	position: absolute;
 	background: transparent;
+}
+
+.admin-bar .pw-hero .header {
+	top: 32px;
 }
 
 @include susy-media(break(sm)) {

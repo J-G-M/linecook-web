@@ -397,6 +397,18 @@ class NF_Functions {
 
 
 
+
+	public static function get_login_modal() {
+
+		echo NF()->modal(false, '[woocommerce_my_account]', 'modal-login');
+	}
+
+
+
+
+
+
+
 	/**
 	 * Social Icons
 	 */
@@ -516,3 +528,5 @@ class NF_Functions {
 function NF() {
 	return new NF_Functions();
 }
+
+add_filter('wp_footer', ['NF_Functions', 'get_login_modal']);

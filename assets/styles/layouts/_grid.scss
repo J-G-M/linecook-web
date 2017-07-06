@@ -31,3 +31,7 @@
 .rwd-container {
 	@extend %rwd-container;
 }
+
+.error404 .wrap {
+	padding: 40px 0;
+}
