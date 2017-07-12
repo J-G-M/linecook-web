@@ -27,6 +27,7 @@ class NF {
 			define('NF_GMAPS_API', 'AIzaSyDoVervtRaPVCC276PsdPF5flnqrwzkcC4');
 		endif;
 
+		add_filter('template_redirect', [$this, 'template_redirect']);
 		add_filter('walker_nav_menu_start_el', [$this, 'scrollTo_menu'], 9999, 4);
 		/**
 		 * Load Settings
@@ -130,6 +131,21 @@ class NF {
 		$output .= '</a>';
 
 		return $output;
+	}
+
+
+
+
+	public function template_redirect() {
+
+		if ( is_shop() || is_archive('product') || is_tax(['product_cat', 'product_tag']) ) {
+			$page = get_key('page_menu');
+
+			if ( $page ) {
+				wp_redirect( get_permalink($page->ID, 302) );
+				exit;
+			}
+		}
 	}
 
 

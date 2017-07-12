@@ -19,6 +19,11 @@ if ( function_exists('acf_add_options_page') ) {
 		'parent' => 'theme-options',
 	));
 
+	acf_add_options_sub_page(array(
+		'title'  => 'Email',
+		'parent' => 'theme-options',
+	));
+
 
 	if ( current_theme_supports('nf_sidebars') ) {
 

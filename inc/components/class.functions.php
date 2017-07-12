@@ -400,7 +400,7 @@ class NF_Functions {
 
 	public static function get_login_modal() {
 
-		echo NF()->modal(false, '[woocommerce_my_account]', 'modal-login');
+		echo NF()->modal(false, '[woocommerce_my_account] [fbl_login_button redirect="" hide_if_logged="true"]', 'modal-login');
 	}
 
 

@@ -45,6 +45,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php endif; ?>
 
 			<div class="span-billing">
+				<?php do_action( 'woocommerce_checkout_shipping' ); ?>
+
 				<h3 id="order_review_heading" class="page-title"><?php _e( 'Your order', 'woocommerce' ); ?></h3>
 
 				<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
