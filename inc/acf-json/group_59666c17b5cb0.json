@@ -3,6 +3,65 @@
     "title": "Email Settings",
     "fields": [
         {
+            "key": "field_59679bf3248a7",
+            "label": "Defaults",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_59679c12248a9",
+            "label": "Logo",
+            "name": "mail_logo",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_59679bfb248a8",
+            "label": "Footer",
+            "name": "mail_footer",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
             "key": "field_59666c2354c71",
             "label": "Pickup Notification",
             "name": "",
@@ -41,7 +100,7 @@
             "key": "field_59666cd654c73",
             "label": "Content",
             "name": "mail_01_content",
-            "type": "textarea",
+            "type": "wysiwyg",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -51,10 +110,10 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "",
-            "maxlength": "",
-            "rows": 18,
-            "new_lines": "br"
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
         },
         {
             "key": "field_59666ce554c74",
@@ -95,7 +154,7 @@
             "key": "field_59666cf654c76",
             "label": "Content",
             "name": "mail_02_content",
-            "type": "textarea",
+            "type": "wysiwyg",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -105,10 +164,10 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "",
-            "maxlength": "",
-            "rows": 18,
-            "new_lines": "br"
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
         }
     ],
     "location": [
@@ -129,5 +188,5 @@
     "active": 1,
     "description": "",
     "menu_item_level": "all",
-    "modified": 1499884841
+    "modified": 1499964568
 }

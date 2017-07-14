@@ -22,10 +22,22 @@ class NF_User extends WP_User {
 	}
 
 
+	public function get_firstname() {
 
-	public function get_contact_name() {
+		return $this->data->first_name;
+	}
 
-		return $this->data->display_name;
+
+	public function get_lastname() {
+
+		return $this->data->last_name;
+	}
+
+
+
+	public function get_name() {
+
+		return $this->data->first_name . ' ' . $this->data->last_name;
 	}
 
 

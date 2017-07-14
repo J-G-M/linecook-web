@@ -10,6 +10,8 @@ class NF_Functions {
 	public function get_pickup_time( $post_id ) {
 
 		$times = get_field('pickup_times', $post_id);
+		$weeks = get_post_meta($post_id, 'weeks', true);
+		$exclude = get_field('exclude', $post_id);
 
 		if ( ! $times )
 			return;

@@ -17,9 +17,9 @@
             },
             "collapsed": "",
             "min": 0,
-            "max": 0,
+            "max": 7,
             "layout": "table",
-            "button_label": "Add Time",
+            "button_label": "Add Pickup Time",
             "sub_fields": [
                 {
                     "key": "field_595cf72c1d021",
@@ -44,7 +44,7 @@
                     "key": "field_595cf7561d022",
                     "label": "Day of Week",
                     "name": "day",
-                    "type": "text",
+                    "type": "select",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -53,11 +53,22 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
+                    "choices": {
+                        "Monday": "Monday",
+                        "Tuesday": "Tuesday",
+                        "Wednesday": "Wednesday",
+                        "Thursday": "Thursday",
+                        "Friday": "Friday",
+                        "Saturday": "Saturday",
+                        "Sunday": "Sunday"
+                    },
+                    "default_value": [],
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
                 },
                 {
                     "key": "field_595cf76e1d023",
@@ -77,6 +88,65 @@
                     "prepend": "",
                     "append": "",
                     "maxlength": ""
+                }
+            ]
+        },
+        {
+            "key": "field_59686dd29d428",
+            "label": "Weeks",
+            "name": "weeks",
+            "type": "number",
+            "instructions": "How many weeks in advanced can pickup be set by customer",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 3,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": ""
+        },
+        {
+            "key": "field_59686f659d429",
+            "label": "Exclude Dates",
+            "name": "exclude",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Add Date",
+            "sub_fields": [
+                {
+                    "key": "field_59686f749d42a",
+                    "label": "Date",
+                    "name": "date",
+                    "type": "date_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "d\/m\/Y",
+                    "return_format": "d\/m\/Y",
+                    "first_day": 1
                 }
             ]
         }
@@ -99,5 +169,5 @@
     "active": 1,
     "description": "",
     "menu_item_level": "all",
-    "modified": 1499264973
+    "modified": 1500016546
 }

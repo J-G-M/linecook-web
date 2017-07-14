@@ -178,7 +178,9 @@ if ( ! function_exists('debug_wpmail')) :
 				$ts_mail_errors[] = $phpmailer->ErrorInfo;
 			}
 
-			print_r('<pre>' . $ts_mail_errors . '</pre>');
+			print_r('<pre>');
+			print_r($ts_mail_errors);
+			print_r('</pre>');
 		}
 	}
 

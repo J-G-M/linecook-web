@@ -1,0 +1,42 @@
+{
+    "key": "group_5967a511bd733",
+    "title": "Available Shortcodes",
+    "fields": [
+        {
+            "key": "field_5967a51faa685",
+            "label": "Available Shortcodes",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "{user_name}\r\n{user_firstname}\r\n{user_lastname}\r\n{user_email}\r\n{url_website}\r\n{url_login}\r\n{url_ourmenu}\r\n{day_of_week}\r\n{pickup_location_name}\r\n{pickup_location_datetime}\r\n{pickup_location_address}",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-email"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "menu_item_level": "all",
+    "modified": 1499964786
+}
