@@ -180,31 +180,6 @@
                     "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_59553013131f2",
-                            "label": "Type",
-                            "name": "wgt_type",
-                            "type": "select",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "home": "Homepage",
-                                "menu": "Our Menu"
-                            },
-                            "default_value": [],
-                            "allow_null": 0,
-                            "multiple": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "return_format": "value",
-                            "placeholder": ""
-                        },
-                        {
                             "key": "field_5955302d131f3",
                             "label": "Title",
                             "name": "title",
@@ -518,9 +493,9 @@
                     "sub_fields": [
                         {
                             "key": "field_59553146131fd",
-                            "label": "Type",
-                            "name": "wgt_type",
-                            "type": "select",
+                            "label": "Menu",
+                            "name": "menu",
+                            "type": "clone",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -529,116 +504,13 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "choices": {
-                                "auto": "Auto",
-                                "manual": "Manual"
-                            },
-                            "default_value": [],
-                            "allow_null": 0,
-                            "multiple": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "return_format": "value",
-                            "placeholder": ""
-                        },
-                        {
-                            "key": "field_5955315c131fe",
-                            "label": "Quantity",
-                            "name": "qty",
-                            "type": "number",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_59553146131fd",
-                                        "operator": "==",
-                                        "value": "auto"
-                                    }
-                                ]
+                            "clone": [
+                                "group_596a1e1fc18bd"
                             ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "min": "",
-                            "max": "",
-                            "step": ""
-                        },
-                        {
-                            "key": "field_59553180131ff",
-                            "label": "Products",
-                            "name": "products",
-                            "type": "repeater",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_59553146131fd",
-                                        "operator": "==",
-                                        "value": "manual"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "collapsed": "",
-                            "min": 0,
-                            "max": 0,
-                            "layout": "table",
-                            "button_label": "Add Product",
-                            "sub_fields": [
-                                {
-                                    "key": "field_5955318a13200",
-                                    "label": "Product",
-                                    "name": "product",
-                                    "type": "post_object",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "post_type": [
-                                        "product"
-                                    ],
-                                    "taxonomy": [],
-                                    "allow_null": 0,
-                                    "multiple": 0,
-                                    "return_format": "object",
-                                    "ui": 1
-                                }
-                            ]
-                        },
-                        {
-                            "key": "field_595ce0cd2e70e",
-                            "label": "Section ID",
-                            "name": "section_id",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
                         }
                     ],
                     "min": "",
@@ -885,5 +757,5 @@
     "active": 1,
     "description": "",
     "menu_item_level": "all",
-    "modified": 1499259105
+    "modified": 1500127003
 }

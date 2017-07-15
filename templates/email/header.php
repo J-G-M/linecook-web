@@ -106,6 +106,39 @@ global $nf; ?>
 			.mcnDividerBlock{
 				table-layout:fixed !important;
 			}
+
+			#shop_table table {
+				width: 100%;
+			}
+
+			#shop_table table td {
+				padding: 12px;
+			}
+
+			#shop_table table td td {
+				padding: 12px;
+			}
+
+			#shop_table table td th {
+				padding: 12px;
+				font-weight: 700;
+			}
+
+			#shop_table td ul.wc-item-meta {
+				font-size: small;
+				margin: 1em 0 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			#shop_table td ul.wc-item-meta li {
+				margin: 0.5em 0 0;
+				padding: 0;
+			}
+
+			#shop_table td ul.wc-item-meta li p {
+				margin: 0;
+			}
 	/*
 	@tab Page
 	@section Heading 1
@@ -525,7 +558,7 @@ global $nf; ?>
 
 																						if ( $logo ) : ?>
 																							<a class="" href="https://www.linecook.co/" target="_blank" title="Linecook Home">
-																								<img align="center" alt="Linecook Logo" class="mcnImage" src="<?= $logo['url']; ?>" style="max-width:728px; padding-bottom: 0; display: inline !important; vertical-align: bottom;">
+																								<img align="center" alt="Linecook Logo" class="mcnImage" src="<?= $logo; ?>" style="max-width:728px; padding-bottom: 0; display: inline !important; vertical-align: bottom;">
 																							</a>
 																						<?php endif; ?>
 																					</td>

@@ -69,8 +69,9 @@ abbr {
 	text-decoration: none;
 }
 
+.h-72,
 .h-82 {
-	font-weight: 200;
+	font-weight: 100;
 	@include font(36);
 }
 
@@ -110,6 +111,7 @@ fieldset {
 
 
 @include susy-media(break(sm)) {
+	.h-72,
 	.h-82 {
 		font-size: rem(48);
 	}
@@ -118,6 +120,7 @@ fieldset {
 
 
 @include susy-media(break(md)) {
+	.h-72,
 	.h-82 {
 		font-size: rem(62);
 	}
@@ -129,6 +132,10 @@ fieldset {
 
 
 @include susy-media(break(xl)) {
+	.h-72 {
+		font-size: rem(72);
+	}
+
 	.h-82 {
 		font-size: rem(82);
 	}

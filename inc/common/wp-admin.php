@@ -43,7 +43,7 @@ add_action( 'init', function () {
 /**
  * Remove some post meta
  */
-add_action( 'admin_menu', function () {
+add_action( 'add_meta_boxes', function () {
 
 	remove_meta_box( 'thumbnaildiv', 'page', 'side' );
 	remove_meta_box( 'commentsdiv', 'page', 'normal' );
@@ -52,6 +52,7 @@ add_action( 'admin_menu', function () {
 	remove_meta_box( 'slugdiv', 'post', 'normal' );
 
 	remove_meta_box( 'postexcerpt', 'product', 'normal' );
+	remove_meta_box( 'postcustom', 'product', 'normal' );
 }, 989);
 
 

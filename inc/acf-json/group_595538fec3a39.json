@@ -1,7 +1,23 @@
 {
     "key": "group_595538fec3a39",
-    "title": "What's included",
+    "title": "Additional Details",
     "fields": [
+        {
+            "key": "field_5968ba450a09d",
+            "label": "What's included",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
         {
             "key": "field_595539074b8f7",
             "label": "Title",
@@ -39,6 +55,77 @@
             "maxlength": "",
             "rows": "",
             "new_lines": "br"
+        },
+        {
+            "key": "field_5968ba5a0a09e",
+            "label": "Availability",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5968ba6c0a09f",
+            "label": "Date Range",
+            "name": "date_range",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Add Range",
+            "sub_fields": [
+                {
+                    "key": "field_5968ba820a0a0",
+                    "label": "From",
+                    "name": "from",
+                    "type": "date_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "d\/m\/Y",
+                    "return_format": "d\/m\/Y",
+                    "first_day": 1
+                },
+                {
+                    "key": "field_5968ba890a0a1",
+                    "label": "To",
+                    "name": "to",
+                    "type": "date_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "d\/m\/Y",
+                    "return_format": "d\/m\/Y",
+                    "first_day": 1
+                }
+            ]
         }
     ],
     "location": [
@@ -58,5 +145,6 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1498757416
+    "menu_item_level": "all",
+    "modified": 1500035748
 }

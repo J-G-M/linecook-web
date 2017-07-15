@@ -15,7 +15,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "{user_name}\r\n{user_firstname}\r\n{user_lastname}\r\n{user_email}\r\n{url_website}\r\n{url_login}\r\n{url_ourmenu}\r\n{day_of_week}\r\n{pickup_location_name}\r\n{pickup_location_datetime}\r\n{pickup_location_address}",
+            "message": "{user_name} - Full Name\r\n{user_firstname}\r\n{user_lastname}\r\n{user_email}\r\n{url_website}\r\n{url_login}\r\n{url_ourmenu}\r\n{day_of_week}\r\n{pickup_location_name}\r\n{pickup_location_datetime}\r\n{pickup_location_address}\r\n{order_data} - Table display order items",
             "new_lines": "wpautop",
             "esc_html": 0
         }
@@ -38,5 +38,5 @@
     "active": 1,
     "description": "",
     "menu_item_level": "all",
-    "modified": 1499964786
+    "modified": 1500114265
 }

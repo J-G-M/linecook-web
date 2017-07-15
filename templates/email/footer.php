@@ -60,7 +60,7 @@ global $nf; ?>
 																				<tbody>
 																					<tr>
 																						<td class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;" valign="top">
-																							<?php get_key('mail_footer', $nf); ?>
+																							<?= wpautop(get_option('woocommerce_email_footer_text')); ?>
 																						</td>
 																					</tr>
 																				</tbody>

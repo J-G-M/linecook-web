@@ -9,26 +9,187 @@ class NF_Functions {
 
 	public function get_pickup_time( $post_id ) {
 
-		$times = get_field('pickup_times', $post_id);
-		$weeks = get_post_meta($post_id, 'weeks', true);
-		$exclude = get_field('exclude', $post_id);
+		global $woocommerce, $zone;
+
+
+		$excludes = $schedule = $ranges = [];
+		$date     = new DateTime('now', $zone);
+		$now      = new DateTime('now', $zone);
+		$times    = get_field('pickup_times', $post_id);
+		$weeks    = get_post_meta($post_id, 'weeks', true);
+		$exclude  = get_field('exclude', $post_id);
+		$items    = $woocommerce->cart->get_cart();
+
 
 		if ( ! $times )
 			return;
 
 
-		foreach ($times as $key => $data) {
+		/**
+		 * Dates to exclude from select list
+		 */
+		if ( $exclude ) :
+			foreach ( $exclude as $ex ) :
 
-			if ( $data['active'] == 1 ) {
+				$date_ex = new DateTime(str_replace('/', '-', $ex['date']));
+				$excludes[] = $date_ex->format('Y-m-d');
+			endforeach;
+		endif;
 
-				$schedule['days'][] = $data['day'];
-				$schedule[$data['day']] = array_map( 'trim', explode(',', $data['hour']) );
-			}
 
+		/**
+		 * Validate order item avialability
+		 */
+		foreach ($items as $key => $item) {
+
+			$ranges = array_merge( $ranges, get_field('date_range', $item['product_id']));
 		}
 
 
+
+		for ( $i = 0; $i < $weeks; $i++) :
+			foreach ($times as $key => $data) :
+
+				if ( $data['active'] == 1 ) :
+
+
+					// Next ocurenes
+					$next = $date->modify('next ' . $data['day'] );
+
+					// Check if date is manually excluded
+					$find = array_search( $next->format('Y-m-d'), $excludes );
+
+					if ( $find !== false )
+						continue;
+
+
+					$schedule['days'][]     = $next->format('l, F j Y');
+					$schedule[$data['day']] = array_map( 'trim', explode(',', $data['hour']) );
+
+				endif;
+			endforeach;
+		endfor;
+
+
+
+		/**
+		 * Exclude dates when one of items is not available for pickup
+		 */
+		if ( $ranges && get_key('days', $schedule) ) :
+
+			foreach ( $schedule['days'] as $key => $dt1 ) :
+
+				$day = new DateTime(str_replace('/', '-', $dt1), $zone);
+
+				foreach ($ranges as $dt2 ) :
+
+					$start = new DateTime(str_replace('/', '-', $dt2['from']), $zone);
+					$end   = new DateTime(str_replace('/', '-', $dt2['to']), $zone);
+
+					if ( $day >= $start && $day <= $end ) {
+						$found[] = $key;
+					}
+
+				endforeach;
+			endforeach;
+
+			$found = array_unique($found);
+
+			foreach ( $schedule['days'] as $k => $v ) {
+
+				if ( ! in_array($k, $found) ) {
+					unset($schedule['days'][$k]);
+				}
+			}
+		endif;
+
+
+		if ( get_key('unavailable', $schedule) ) :
+			$schedule['unavailable'] = array_unique($schedule['unavailable']);
+		endif;
+
 		return $schedule;
+	}
+
+
+
+
+
+
+	public function get_week_menu_title() {
+
+		$week = $this->get_week_menu_dates();
+
+		return $week['title'];
+	}
+
+
+
+
+
+	public function get_week_menu_dates() {
+
+		global $nf, $zone;
+
+		$now = new DateTime('now', $zone);
+
+		if ( isset($_GET['menu']) && NF()->validateDate($_GET['menu']) ) {
+
+			$start = new DateTime($_GET['menu'], $zone);
+		}
+		else {
+			$start = new DateTime('now', $zone);
+		}
+
+
+
+		if ( in_array( strtolower($start->format('D')), ['fri', 'sat', 'sun'] ) ) {
+
+			$mon = new DateTime( $start->format('Y-m-d') );
+			$sun = new DateTime( $start->format('Y-m-d') );
+
+			$mon->modify('monday next week');
+			$sun->modify('sunday next week');
+		}
+		else {
+			$mon = new DateTime( $start->format('Y-m-d') );
+			$sun = new DateTime( $start->format('Y-m-d') );
+
+			$mon->modify('monday this week');
+			$sun->modify('sunday this week');
+		}
+
+		if ( $mon->format('m') != $sun->format('m')) {
+			$week = $mon->format('F dS') . ' - ' . $sun->format('F dS');
+		}
+		else {
+			$week = $mon->format('F dS') . ' - ' . $sun->format('dS');
+		}
+
+
+		$data = [
+			'start'    => $mon,
+			'end'      => $sun,
+			'nav_next' => add_query_arg('menu', $start->modify('next monday')->format('Y-m-d'), get_permalink($nf['page_menu'])),
+			'nav_prev' => add_query_arg('menu', $start->modify('-2 weeks')->format('Y-m-d'), get_permalink($nf['page_menu'])),
+			'title'    => $week,
+		];
+
+		if ( $now > $start ) {
+			unset($data['nav_prev']);
+		}
+
+
+		return $data;
+	}
+
+
+
+
+	public function validateDate($date) {
+
+		$d = DateTime::createFromFormat('Y-m-d', $date);
+		return $d && $d->format('Y-m-d') === $date;
 	}
 
 

@@ -90,6 +90,8 @@ $includes = [
 	'components/class.functions.php',
 	'components/class.ajax.php',
 	'components/class.user.php',
+	'components/class.mailer.php',
+	'components/class.cron.php',
 ];
 
 

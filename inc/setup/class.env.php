@@ -21,14 +21,19 @@ class NF {
 	 */
 	public function __construct() {
 
-		global $nf;
+		global $nf, $zone;
 
-		if ( ! defined('NF_GMAPS_API')) :
+		$zone = new DateTimeZone('America/New_York');
+
+		if ( ! defined('NF_GMAPS_API')) {
 			define('NF_GMAPS_API', 'AIzaSyDoVervtRaPVCC276PsdPF5flnqrwzkcC4');
-		endif;
+		}
 
 		add_filter('template_redirect', [$this, 'template_redirect']);
 		add_filter('walker_nav_menu_start_el', [$this, 'scrollTo_menu'], 9999, 4);
+
+
+
 		/**
 		 * Load Settings
 		 */
@@ -37,6 +42,13 @@ class NF {
 			$this->load_options();
 			$this->load_sidebars();
 		endif;
+
+
+
+		/**
+		 * Custom table / save_post
+		 */
+		$this->create_menu_table();
 	}
 
 
@@ -153,6 +165,88 @@ class NF {
 
 
 
+
+	/**
+	 *
+	 *
+	 * Create availability menu items table
+	 * This table stores data for each item on what date is available
+	 * This is needed so we can preform per week query for weekly menu since date ranges are defined with ACF
+	 * repeater field this is not possible using standard WP_Query
+	 *
+	 *
+	 */
+	public function create_menu_table() {
+
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'menu_availibility';
+		$charset    = $wpdb->get_charset_collate();
+
+		$sql = "CREATE TABLE $table_name (
+			id mediumint(9) NOT NULL AUTO_INCREMENT,
+			product_id mediumint(9) NULL,
+			item_start DATE DEFAULT '0000-00-00' NOT NULL,
+			item_end DATE DEFAULT '0000-00-00' NOT NULL,
+			PRIMARY KEY  (id)
+		) $charset;";
+
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		dbDelta( $sql );
+	}
+
+
+
+
+
+
+	/**
+	 * Save ACF values to custom table
+	 */
+	public function save_menu_avialibility( $post_id, $post, $update ) {
+
+
+
+		global $wpdb, $zone;
+
+		if ( wp_is_post_revision( $post_id ) || 'product' != get_post_type($post_id) )
+			return;
+
+		$table = $wpdb->prefix . 'menu_availibility';
+		$range = isset($_POST['acf']['field_5968ba6c0a09f']) ? $_POST['acf']['field_5968ba6c0a09f'] : false;
+
+		// Delete old entries
+		$wpdb->query($wpdb->prepare("DELETE FROM $table WHERE product_id = %d", $post_id));
+
+		if ( $range ) :
+			foreach ( $range as $date ) {
+
+				$from = new DateTime($date['field_5968ba820a0a0']);
+				$to   = new DateTime($date['field_5968ba890a0a1']);
+
+				$wpdb->insert(
+					$table,
+					array(
+						'product_id' => $post_id,
+						'item_start' => $from->format('Y-m-d'),
+						'item_end'   => $to->format('Y-m-d'),
+					),
+					array(
+						'%d',
+						'%s',
+						'%s',
+					)
+				);
+			}
+		endif;
+
+		update_option( 'load', $range );
+	}
+
+
+
+
+
 	/**
 	 * Favicon in head
 	 */
@@ -181,3 +275,6 @@ class NF {
 
 add_action('init', ['NF', 'init']);
 add_action('wp_head', ['NF', 'set_favicon']);
+
+
+add_action( 'save_post', ['NF', 'save_menu_avialibility'], 1001, 3 );

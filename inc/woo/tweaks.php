@@ -225,11 +225,12 @@ add_action( 'woocommerce_checkout_update_order_meta', function ( $order_id ) {
 	$location    = isset($_POST['pickup_location']) ? intval($_POST['pickup_location']) : false;
 	$pickup_day  = isset($_POST['pickup_day']) ? sanitize_text_field($_POST['pickup_day']) : '';
 	$pickup_time = isset($_POST['pickup_time']) ? sanitize_text_field($_POST['pickup_time']) : '';
-	$pickup      = trim( $pickup_day . ' ' . $pickup_time ) ;
+	$pickup      = strtotime( trim( $pickup_day . ' ' . $pickup_time ) );
 
 	if ( ! empty( $location ) ) {
 		update_post_meta( $order_id, 'pickup_location',  $location );
 	}
+
 
 	if ( ! empty( $pickup ) ) {
 		update_post_meta( $order_id, 'pickup_day_time',  $pickup );
@@ -237,36 +238,31 @@ add_action( 'woocommerce_checkout_update_order_meta', function ( $order_id ) {
 });
 
 
-/**
- * Display field value on the order edit page
- */
-add_action( 'woocommerce_admin_order_data_after_billing_address', function ($order){
 
-	$location = get_post_meta( $order->id, 'pickup_location', true );
-	$pickup   = get_post_meta( $order->id, 'pickup_day_time', true );
+/**
+ * Display field value on the order edit page and in email
+ */
+function display_pickup_datetime( $order ) {
+
+	$order_id = $order->get_id();
+
+	$location = get_post_meta( $order_id, 'pickup_location', true );
+	$pickup   = date('Y-m-d H:i', get_post_meta( $order_id, 'pickup_day_time', true ));
+	$date     = new DateTime($pickup, new DateTimeZone('America/New_York'));
+
+	echo '<h2>Pickup Details:</h2>';
 
 	if ( $location ) {
 		$post = get_post($location);
 
-		echo '<p><strong>'.__('Pickup Location').':</strong> ' . apply_filters( 'the_title', $post->post_title ) . '</p>';
+		echo '<p><strong>'.__('Pickup Location').':</strong> ' . apply_filters( 'the_title', $post->post_title ) . ', ' .  $post->post_content . '</p>';
 	}
 
 
 	if ( $pickup ) {
-		echo '<p><strong>'.__('Pickup Day and Time').':</strong> ' . apply_filters( 'the_title', $pickup ) . '</p>';
+		echo '<p><strong>'.__('Pickup Day and Time').':</strong> ' . $date->format('l, F d Y') . '</p>';
 	}
+}
 
-
-}, 10, 1 );
-
-
-/**
- * Adding custom fields to emails
- */
-add_filter('woocommerce_email_order_meta_keys', function ( $keys ) {
-
-	$keys[] = 'pickup_location';
-	$keys[] = 'pickup_day_time';
-
-	return $keys;
-});
+add_action('woocommerce_admin_order_data_after_billing_address', 'display_pickup_datetime', 10, 1 );
+add_filter('woocommerce_email_after_order_table', 'display_pickup_datetime');

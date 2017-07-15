@@ -23,7 +23,7 @@ export default {
 
 			var data = jQuery.parseJSON( $('#location_data').val() );
 			var id   = $('#pickup_location').find('option:selected').data('id');
-			var day  = $('#pickup_day').find('option:selected').val();
+			var day  = $('#pickup_day').find('option:selected').val().split(',');
 
 			if ( $(this).attr('name') === 'pickup_location' ) {
 
@@ -37,7 +37,7 @@ export default {
 
 				$('#pickup_time').html('<option value="0">Select Time</option>');
 
-				$.each( data[id][day], function(index, val) {
+				$.each( data[id][day[0]], function(index, val) {
 					$('#pickup_time').append('<option value="'+val+'">'+val+'</option>');
 				});
 			}

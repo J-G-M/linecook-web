@@ -1,12 +1,12 @@
 {
-    "key": "group_59666c17b5cb0",
-    "title": "Email Settings",
+    "key": "group_596a1e1fc18bd",
+    "title": "Menu",
     "fields": [
         {
-            "key": "field_59666c2354c71",
-            "label": "Pickup Notification",
-            "name": "",
-            "type": "tab",
+            "key": "field_596a1e9d1f033",
+            "label": "Type",
+            "name": "wgt_type",
+            "type": "select",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -15,13 +15,92 @@
                 "class": "",
                 "id": ""
             },
-            "placement": "left",
-            "endpoint": 0
+            "choices": {
+                "static": "Current Week Only",
+                "dynamic": "Weekly"
+            },
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
         },
         {
-            "key": "field_59666cca54c72",
-            "label": "Subject",
-            "name": "mail_01_subject",
+            "key": "field_596a1eda1f034",
+            "label": "Title",
+            "name": "title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_596a1e9d1f033",
+                        "operator": "==",
+                        "value": "static"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_596a1e281f02f",
+            "label": "Lead",
+            "name": "lead",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "wpautop"
+        },
+        {
+            "key": "field_596a1e871f032",
+            "label": "Background Image",
+            "name": "bg_image",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_596a1e7d1f031",
+            "label": "Section ID",
+            "name": "section_id",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -36,87 +115,14 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
-        },
-        {
-            "key": "field_59666cd654c73",
-            "label": "Content",
-            "name": "mail_01_content",
-            "type": "wysiwyg",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 1,
-            "delay": 0
-        },
-        {
-            "key": "field_59666ce554c74",
-            "label": "Pickup Feedback",
-            "name": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "placement": "left",
-            "endpoint": 0
-        },
-        {
-            "key": "field_59666cef54c75",
-            "label": "Subject",
-            "name": "mail_02_subject",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_59666cf654c76",
-            "label": "Content",
-            "name": "mail_02_content",
-            "type": "wysiwyg",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 1,
-            "delay": 0
         }
     ],
     "location": [
         [
             {
-                "param": "options_page",
+                "param": "post_type",
                 "operator": "==",
-                "value": "acf-options-email"
+                "value": "page_widget"
             }
         ]
     ],
@@ -129,5 +135,5 @@
     "active": 1,
     "description": "",
     "menu_item_level": "all",
-    "modified": 1500113249
+    "modified": 1500127704
 }
