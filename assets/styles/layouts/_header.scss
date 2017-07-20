@@ -41,9 +41,13 @@
 	background: transparent;
 }
 
-.admin-bar .pw-menu .header,
-.admin-bar .pw-hero .header {
-	top: 32px;
+.admin-bar.pw-menu .header,
+.admin-bar.pw-hero .header {
+	top: 46px;
+
+	@include susy-media(783px) {
+		top: 32px;
+	}
 }
 
 @include susy-media(break(sm)) {

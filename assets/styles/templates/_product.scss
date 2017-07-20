@@ -14,7 +14,8 @@
 		position: relative;
 	}
 
-	.stock-status {
+	.stock-status,
+	.product-overlay {
 		top: 15px;
 		right: 0;
 		color: white;
@@ -27,6 +28,10 @@
 		font-weight: 500;
 		text-transform: uppercase;
 		@include font(14,1,60);
+	}
+
+	.stock-status + .product-overlay {
+		top: 45px;
 	}
 
 	.price {

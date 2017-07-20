@@ -11,8 +11,6 @@ export default {
 
 			var markers = [];
 
-			console.log($data);
-
 			$.each($data.locations, function() {
 
 				for (var i = $data.locations.length - 1; i >= 0; i--) {
@@ -59,9 +57,10 @@ export default {
 							icon: icon,
 							position: new google.maps.LatLng(loc.lat, loc.lng),
 						});
-
-						$map.fitBounds(bounds);
 					}
+
+					// $map.fitBounds(bounds);
+					$map.setZoom( $map.data('zoom') );
 
 					console.log( data );
 					console.log( marker );

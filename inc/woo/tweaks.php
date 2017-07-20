@@ -127,16 +127,16 @@ add_filter( 'woocommerce_checkout_fields', function( $fields ) {
 	$fields['billing']['billing_phone']['required'] = 0;
 
 	unset( $fields['billing']['billing_state']['validate'] );
-	unset( $fields['billing']['billing_state'] );
+	// unset( $fields['billing']['billing_state'] );
 	unset( $fields['billing']['billing_company'] );
-	unset( $fields['billing']['billing_country'] );
-	unset( $fields['billing']['billing_city'] );
+	// unset( $fields['billing']['billing_country'] );
+	// unset( $fields['billing']['billing_city'] );
 
 
 	$fields['shipping']['shipping_state']['required'] = 0;
 
 	unset( $fields['shipping']['shipping_state']['validate'] );
-	unset( $fields['shipping']['shipping_state'] );
+	// unset( $fields['shipping']['shipping_state'] );
 	unset( $fields['shipping']['shipping_company'] );
 
 	return $fields;

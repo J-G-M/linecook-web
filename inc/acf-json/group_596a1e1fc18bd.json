@@ -115,6 +115,27 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
+        },
+        {
+            "key": "field_597067398a5f5",
+            "label": "Max Weeks in Advanced",
+            "name": "max_weeks",
+            "type": "number",
+            "instructions": "How many weeks in advanced to show in navigation",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 4,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": 1,
+            "max": "",
+            "step": ""
         }
     ],
     "location": [
@@ -135,5 +156,5 @@
     "active": 1,
     "description": "",
     "menu_item_level": "all",
-    "modified": 1500127704
+    "modified": 1500538724
 }

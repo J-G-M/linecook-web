@@ -127,11 +127,16 @@ class NF_Functions {
 
 
 
-	public function get_week_menu_dates() {
+	public function get_week_menu_dates( $weeks = 3 ) {
 
 		global $nf, $zone;
 
+		$weeks = 4;
+
 		$now = new DateTime('now', $zone);
+		$max = new DateTime('now', $zone);
+		$max->modify('+' . $weeks . ' weeks');
+
 
 		if ( isset($_GET['menu']) && NF()->validateDate($_GET['menu']) ) {
 
@@ -139,6 +144,7 @@ class NF_Functions {
 		}
 		else {
 			$start = new DateTime('now', $zone);
+			$start->modify('monday next week');
 		}
 
 
@@ -166,11 +172,13 @@ class NF_Functions {
 			$week = $mon->format('F dS') . ' - ' . $sun->format('dS');
 		}
 
+		$diff = $max->diff($mon);
+
 
 		$data = [
 			'start'    => $mon,
 			'end'      => $sun,
-			'nav_next' => add_query_arg('menu', $start->modify('next monday')->format('Y-m-d'), get_permalink($nf['page_menu'])),
+			'nav_next' => add_query_arg('menu', $start->modify('monday next week')->format('Y-m-d'), get_permalink($nf['page_menu'])),
 			'nav_prev' => add_query_arg('menu', $start->modify('-2 weeks')->format('Y-m-d'), get_permalink($nf['page_menu'])),
 			'title'    => $week,
 		];
@@ -179,6 +187,9 @@ class NF_Functions {
 			unset($data['nav_prev']);
 		}
 
+		if ( intval($diff->d / 7) == 0  ) {
+			unset($data['nav_next']);
+		}
 
 		return $data;
 	}
@@ -563,7 +574,7 @@ class NF_Functions {
 
 	public static function get_login_modal() {
 
-		echo NF()->modal(false, '[woocommerce_my_account] [fbl_login_button redirect="" hide_if_logged="true"]', 'modal-login');
+		echo NF()->modal(false, '[woocommerce_my_account]', 'modal-login');
 	}
 
 

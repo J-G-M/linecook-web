@@ -5,7 +5,7 @@ global $widget, $wpdb;
 
 
 $type = get_key('wgt_type');
-$date = NF()->get_week_menu_dates();
+$date = NF()->get_week_menu_dates( get_key('max_weeks') );
 
 $start = $date['start']->format('Y-m-d');
 $end   = $date['end']->format('Y-m-d');
@@ -15,11 +15,18 @@ $sql .= " FROM $wpdb->posts";
 $sql .= " LEFT JOIN {$wpdb->prefix}menu_availibility AS mt1 ON ( {$wpdb->posts}.ID = mt1.product_id )";
 $sql .= " WHERE $wpdb->posts.post_status = 'publish'";
 $sql .= " AND $wpdb->posts.post_type = 'product'";
-$sql .= " AND ( CAST(mt1.item_start AS DATE) >= '$start' AND CAST(mt1.item_end AS DATE) <= '$end' )";
+$sql .= " AND ( mt1.item_start <= '$start' AND mt1.item_end >= '$end' )";
 $sql .= " ORDER BY $wpdb->posts.post_date DESC";
 
 
-$res = $wpdb->get_results($sql, OBJECT);
+if ( $type == 'dynamic' ) :
+	$res = $wpdb->get_results($sql, OBJECT);
+else :
+	$res = get_posts([
+		'post_type' => 'product',
+		'posts_per_page' => -1
+	]);
+endif;
 
 if ( $res ) :
 	global $post; ?>

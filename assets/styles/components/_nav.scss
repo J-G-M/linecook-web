@@ -18,6 +18,20 @@
 		color: color(orange);
 		@include link-colors(color(orange));
 	}
+
+	@include susy-media(break(sm)) {
+		li.visible-mobile {
+			display: none!important;
+		}
+	}
+}
+
+.visible-logged-in {
+	display: inline;
+}
+
+.logged-in .visible-logged-in {
+	display: inlitial;
 }
 
 .woocommerce-MyAccount-navigation {
@@ -47,6 +61,7 @@
 		list-style: none;
 	}
 
+
 	ul li {
 		display: inline-block;
 	}
@@ -65,10 +80,26 @@
 		@include font(13,1,20);
 		@include link-colors(color(text));
 	}
+
+	ul li.menu-logout,
+	ul li.menu-dashboard {
+		display: none;
+	}
+
+	@include susy-media(break(sm)) {
+		li.menu-logout,
+		li.menu-dashboard {
+			display: inline-block;
+		}
+	}
 }
 
 .admin-bar .navbar-user {
-	top: 32px;
+	top: 46px;
+
+	@include susy-media(783px) {
+		top: 32px;
+	}
 }
 
 .navbar-main {

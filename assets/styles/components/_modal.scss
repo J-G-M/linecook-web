@@ -19,7 +19,7 @@
 		margin: 0 auto;
 		padding: 34px 50px 48px;
 		position: relative;
-		max-width: 680px;
+		max-width: 470px;
 		background: white;
 	}
 
@@ -62,4 +62,13 @@
 		font-weight: 500;
 		@include font(22,30,20);
 	}
+}
+
+
+#modal-login .modal-wrap {
+	padding-bottom: 25px;
+}
+
+#modal-login .woocommerce-form-login {
+	padding-bottom: 0;
 }

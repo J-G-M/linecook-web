@@ -39,10 +39,10 @@
 				$nav_shop = wc_get_account_menu_items();
 
 				if ( is_user_logged_in() ) : ?>
-					<li>
-						<a href="<?php echo esc_url( wc_get_account_endpoint_url( 'dashboard' ) ); ?>"><?php echo esc_html( $nav_shop['dashboard'] ); ?></a>
+					<li class="menu-dashboard">
+						<a href="<?php echo esc_url( wc_get_account_endpoint_url( 'dashboard' ) ); ?>">My Account</a>
 					</li>
-					<li>
+					<li class="menu-logout">
 						<a href="<?php echo esc_url( wc_get_account_endpoint_url( 'customer-logout' ) ); ?>"><?php echo esc_html( $nav_shop['customer-logout'] ); ?></a>
 					</li>
 				<?php else : ?>

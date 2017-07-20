@@ -73,6 +73,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
 				<?php endforeach; ?>
 				<div class="clear"></div>
+				<?= do_shortcode('[fbl_login_button redirect="" hide_if_logged="true"]'); ?>
 			</div>
 
 		<?php endif; ?>

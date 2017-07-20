@@ -239,8 +239,6 @@ class NF {
 				);
 			}
 		endif;
-
-		update_option( 'load', $range );
 	}
 
 
