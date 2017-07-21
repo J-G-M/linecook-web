@@ -31,8 +31,10 @@ export default {
 		}
 
 
+
 		function load_map_data($map) {
 
+			console.log($map);
 
 			$.ajax({
 				url: nf.ajax_url,
@@ -51,20 +53,31 @@ export default {
 
 					for ( var i = 0; i < markers.length; i++) {
 
-						var loc    = markers[i];
+						var content = '<div class="infoWin">'+ loc.address +'</div>'
+						var loc     = markers[i];
+						var infoWin = new google.maps.InfoWindow({
+							content: content,
+							maxWidth: 300,
+						});
+
 						var marker = new google.maps.Marker({
 							map: $map,
 							icon: icon,
 							position: new google.maps.LatLng(loc.lat, loc.lng),
 						});
+
+						marker.addListener('click', function() {
+							infoWin.open($map, marker);
+						});
 					}
+
 
 					// $map.fitBounds(bounds);
 					$map.setZoom( $map.data('zoom') );
 
 					console.log( data );
-					console.log( marker );
-					// console.log( XMLHttpRequest );
+					/*console.log( marker );
+					// console.log( XMLHttpRequest );*/
 				},
 				error: function(MLHttpRequest) {
 

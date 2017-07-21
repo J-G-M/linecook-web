@@ -125,13 +125,29 @@ add_filter( 'woocommerce_checkout_fields', function( $fields ) {
 
 	$fields['billing']['billing_state']['required'] = 0;
 	$fields['billing']['billing_phone']['required'] = 0;
+	$fields['billing']['billing_country']['required'] = 0;
 
+	unset( $fields['billing']['billing_country'] );
 	unset( $fields['billing']['billing_state']['validate'] );
 	// unset( $fields['billing']['billing_state'] );
 	unset( $fields['billing']['billing_company'] );
 	// unset( $fields['billing']['billing_country'] );
 	// unset( $fields['billing']['billing_city'] );
 
+
+	$new = [
+		'billing_first_name' => $fields['billing']['billing_first_name'],
+		'billing_last_name'  => $fields['billing']['billing_last_name'],
+		'billing_phone'      => $fields['billing']['billing_phone'],
+		'billing_email'      => $fields['billing']['billing_email'],
+		'billing_address_1'  => $fields['billing']['billing_address_1'],
+		'billing_address_2'  => $fields['billing']['billing_address_2'],
+		'billing_postcode'   => $fields['billing']['billing_postcode'],
+		'billing_city'       => $fields['billing']['billing_city'],
+		'billing_state'      => $fields['billing']['billing_state'],
+	];
+
+	$fields['billing'] = $new;
 
 	$fields['shipping']['shipping_state']['required'] = 0;
 
@@ -146,7 +162,7 @@ add_filter( 'woocommerce_checkout_fields', function( $fields ) {
 /**
  * Add the field to the checkout
  */
-add_action( 'woocommerce_after_checkout_billing_form', function ( $checkout ) {
+add_action( 'woocommerce_checkout_shipping', function ( $checkout ) {
 
 	$locations = get_posts( ['post_type' => 'location', 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC'] );
 
@@ -163,7 +179,7 @@ add_action( 'woocommerce_after_checkout_billing_form', function ( $checkout ) {
 	ob_start(); ?>
 
 	<div id="pickup_location_wrap">
-		<h2><?= __('Pickup Information'); ?></h2>
+		<h2 class="page-title"><?= __('Pickup Information'); ?></h2>
 
 		<div class="row">
 

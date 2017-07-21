@@ -59,6 +59,14 @@ export default {
 			}
 		});
 
+		function is_int(value){
+			if ((parseFloat(value) == parseInt(value)) && !isNaN(value)) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
 		/**
 		 * Generate Markers and bounds from user list
 		 */
@@ -88,7 +96,6 @@ export default {
 
 		function load_map_data($map) {
 
-
 			$.ajax({
 				url: nf.ajax_url,
 				data: {
@@ -100,14 +107,20 @@ export default {
 				dataType: 'json',
 				success: function(data) {
 
-					var bounds = new google.maps.LatLngBounds();
 					var markers = generate_markers(data);
 					var icon = nf.assets + 'icons/map-pin.png';
+					var bounds = new google.maps.LatLngBounds();
+
 
 					for ( var i = 0; i < markers.length; i++) {
 
 						var loc = markers[i];
 						var pos = new google.maps.LatLng(loc.lat, loc.lng);
+						var content = '<div class="infoWin">'+ loc.address +'</div>';
+						var infoWin = new google.maps.InfoWindow({
+							content: content,
+							maxWidth: 300,
+						});
 
 						var marker = new google.maps.Marker({
 							map: $map,
@@ -115,10 +128,15 @@ export default {
 							position: pos,
 						});
 
+						marker.addListener('click', function() {
+							infoWin.open($map, marker);
+						});
+
 						bounds.extend(pos);
-						$map.fitBounds(bounds);
-						$map.setZoom(12);
 					}
+
+					$map.fitBounds(bounds);
+					$map.setZoom( $('#map').data('zoom') );
 
 					/*console.log( data );
 					console.log( markers );
@@ -326,5 +344,27 @@ export default {
 		}
 
 		runMap();
+
+
+
+		$("#billing_postcode").keyup( function() {
+			var el = $(this);
+
+			if ((el.val().length == 5) && (is_int(el.val()))) {
+
+				$.ajax({
+					url: "https://zip.getziptastic.com/v2/US/" + el.val(),
+					cache: false,
+					dataType: "json",
+					type: "GET",
+					success: function(result) {
+						console.log(result);
+						$("#billing_city").val(result.city);
+						$("#billing_state").val(result.state);
+					},
+				});
+			}
+		});
+
 	},
 };

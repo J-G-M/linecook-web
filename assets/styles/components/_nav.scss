@@ -87,8 +87,8 @@
 	}
 
 	@include susy-media(break(sm)) {
-		li.menu-logout,
-		li.menu-dashboard {
+		ul li.menu-logout,
+		ul li.menu-dashboard {
 			display: inline-block;
 		}
 	}

@@ -33,6 +33,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	?>
 
+	<?php if ( ! is_user_logged_in() && $checkout->is_registration_enabled() ) : ?>
+		<div class="woocommerce-account-fields">
+			<?php if ( ! $checkout->is_registration_required() ) : ?>
+
+				<p class="form-row form-row-wide create-account">
+					<label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
+						<input class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" id="createaccount" <?php checked( ( true === $checkout->get_value( 'createaccount' ) || ( true === apply_filters( 'woocommerce_create_account_default_checked', false ) ) ), true ) ?> type="checkbox" name="createaccount" value="1" /> <span><?php _e( 'Create an account?', 'woocommerce' ); ?></span>
+					</label>
+				</p>
+
+			<?php endif; ?>
+
+			<?php do_action( 'woocommerce_before_checkout_registration_form', $checkout ); ?>
+
+			<?php if ( $checkout->get_checkout_fields( 'account' ) ) : ?>
+
+				<div class="create-account">
+					<?php foreach ( $checkout->get_checkout_fields( 'account' ) as $key => $field ) : ?>
+						<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
+					<?php endforeach; ?>
+					<div class="clear"></div>
+					<?= do_shortcode('[fbl_login_button redirect="" hide_if_logged="true"]'); ?>
+				</div>
+
+			<?php endif; ?>
+
+			<?php do_action( 'woocommerce_after_checkout_registration_form', $checkout ); ?>
+		</div>
+	<?php endif; ?>
+
 	<form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
 		<div class="row" id="customer_details">
 			<?php if ( $checkout->get_checkout_fields() ) : ?>
