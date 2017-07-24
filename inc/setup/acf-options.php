@@ -120,6 +120,7 @@ add_filter('acf/load_field/name=select_sidebar', function ( $field ) {
 });
 
 
+
 /**
  * Select Social Network in Theme Options
  */
@@ -133,6 +134,34 @@ add_filter('acf/load_field/name=network', function ( $field ) {
 			$field['choices'][ sanitize_title($net) ] = apply_filters('the_title', $net);
 		}
 	endif;
+
+	return $field;
+});
+
+
+
+/**
+ * Select Social Network in Theme Options
+ */
+add_filter('acf/load_field/name=mc_default_form', function ( $field ) {
+
+	global $wpdb;
+	$lists = $wpdb->get_results("SELECT * FROM {$wpdb->options} WHERE option_name LIKE 'mc4wp_mailchimp_list%'");
+
+	if ( ! $lists )
+		return $field;
+
+
+	$field['choices'] = [];
+
+	foreach ( $lists as $list ) :
+
+		$data = unserialize($list->option_value);
+
+		if ( get_key('id', $data) ) {
+			$field['choices'][ $data->id ] = apply_filters('the_title', $data->name);
+		}
+	endforeach;
 
 	return $field;
 });

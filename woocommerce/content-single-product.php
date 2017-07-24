@@ -20,7 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-?>
+if ( isset($_POST['add-to-cart']) && isset($_POST['quantity'])) : ?>
+	<span class="trigger-login"></span>
+<?php endif; ?>
 
 <div id="product-<?php the_ID(); ?>" class="container container-product">
 

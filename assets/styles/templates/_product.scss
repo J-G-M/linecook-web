@@ -150,6 +150,11 @@
 		@include font(15,26,20);
 	}
 
+	.single_add_to_cart_button {
+		margin: 0 auto;
+		display: block;
+	}
+
 	@include susy-media(break(sm)) {
 		.row {
 			font-size: 0;

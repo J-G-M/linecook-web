@@ -67,6 +67,16 @@
 
 #modal-login .modal-wrap {
 	padding-bottom: 25px;
+
+	.login-lead {
+		display: block;
+		text-align: center;
+		line-height: 1.4;
+	}
+
+	.woocommerce-form-login {
+		max-width: 100% !important;
+	}
 }
 
 #modal-login .woocommerce-form-login {

@@ -142,7 +142,13 @@ class NF_Functions {
 
 			$start = new DateTime($_GET['menu'], $zone);
 		}
+		elseif ( strtolower($now->format('D')) == 'mon' ) {
+
+			$start = new DateTime('now', $zone);
+			$start->modify('monday this week');
+		}
 		else {
+
 			$start = new DateTime('now', $zone);
 			$start->modify('monday next week');
 		}
@@ -574,8 +580,34 @@ class NF_Functions {
 
 	public static function get_login_modal() {
 
+		if ( is_user_logged_in() )
+			return;
+
 		echo NF()->modal(false, '[woocommerce_my_account]', 'modal-login');
 	}
+
+
+
+
+
+	public static function login_redirect() {
+
+		if ( current_user_can('manage_options' ) ) {
+
+			return $redirect_to;
+		}
+		else {
+
+			if ( WC()->cart->get_cart_contents_count() == 0 ) {
+				return $redirect_to;
+			}
+
+			$page = get_option('woocommerce_checkout_page_id');
+			return get_permalink($page);
+		}
+	}
+
+
 
 
 
@@ -704,3 +736,4 @@ function NF() {
 }
 
 add_filter('wp_footer', ['NF_Functions', 'get_login_modal']);
+add_filter('woocommerce_login_redirect', ['NF_Functions', 'login_redirect']);

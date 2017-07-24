@@ -2,6 +2,7 @@
 	exit;
 
 global $product;
+
 $overlay = get_post_meta(get_the_ID(), 'overlay', true); ?>
 
 <article class="product-loop">

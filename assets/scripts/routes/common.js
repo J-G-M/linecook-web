@@ -67,6 +67,16 @@ export default {
 			}
 		}
 
+
+		$(window).load( function() {
+			var modal     = $('#modal-login');
+			var modalShow = $('.trigger-login');
+
+			if ( modalShow.length && ! $('body').hasClass('logged-in') && modal.length ) {
+				modal.addClass('active');
+			}
+		});
+
 		/**
 		 * Generate Markers and bounds from user list
 		 */
@@ -358,7 +368,7 @@ export default {
 					dataType: "json",
 					type: "GET",
 					success: function(result) {
-						console.log(result);
+
 						$("#billing_city").val(result.city);
 						$("#billing_state").val(result.state);
 					},

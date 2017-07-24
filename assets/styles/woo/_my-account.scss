@@ -21,6 +21,10 @@ form.register,
 	margin: 0 auto;
 	max-width: 480px;
 
+	.login-lead {
+		display: none;
+	}
+
 	h2 {
 		font-weight: 400;
 	}

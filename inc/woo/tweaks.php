@@ -223,6 +223,24 @@ add_action( 'woocommerce_checkout_shipping', function ( $checkout ) {
 });
 
 
+add_action('woocommerce_after_order_notes', function ( $checkout ) {
+
+	echo '<div id="mc-subscribe">';
+
+	woocommerce_form_field( 'mc_subscribe', array(
+		'type'          => 'checkbox',
+		'class'         => array('input-checkbox'),
+		'label'         => __('Yes, I would like to receive Linecook News'),
+		'checked'       => 'checked',
+		'default'       => 1,
+		'required'      => false,
+		), $checkout->get_value( 'mc_subscribe' ));
+
+	echo '</div>';
+});
+
+
+
 /**
  * Process the checkout
  */
@@ -242,6 +260,7 @@ add_action( 'woocommerce_checkout_update_order_meta', function ( $order_id ) {
 	$pickup_day  = isset($_POST['pickup_day']) ? sanitize_text_field($_POST['pickup_day']) : '';
 	$pickup_time = isset($_POST['pickup_time']) ? sanitize_text_field($_POST['pickup_time']) : '';
 	$pickup      = strtotime( trim( $pickup_day . ' ' . $pickup_time ) );
+	$subscribe   = isset($_POST['mc_subscribe']) ? intval($_POST['mc_subscribe']) : false;
 
 	if ( ! empty( $location ) ) {
 		update_post_meta( $order_id, 'pickup_location',  $location );
@@ -250,6 +269,15 @@ add_action( 'woocommerce_checkout_update_order_meta', function ( $order_id ) {
 
 	if ( ! empty( $pickup ) ) {
 		update_post_meta( $order_id, 'pickup_day_time',  $pickup );
+	}
+
+	if ( $subscribe ) {
+
+		$email   = get_post_meta($order_id, '_billing_email', true);
+		$list_id = get_key('mc_default_form');
+		$api     = mc4wp_get_api();
+
+		$api->subscribe($list_id, $email);
 	}
 });
 

@@ -37,6 +37,8 @@ if ( ! $register ) : ?>
 
 		<?php do_action( 'woocommerce_login_form_start' ); ?>
 
+		<p class="login-lead">Please create a Linecook account to finish your food pickup. Thanks!</p>
+
 		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 			<label for="username"><?php _e( 'Email address', 'woocommerce' ); ?> <span class="required">*</span></label>
 			<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="username" id="username" value="<?php echo ( ! empty( $_POST['username'] ) ) ? esc_attr( $_POST['username'] ) : ''; ?>" />
