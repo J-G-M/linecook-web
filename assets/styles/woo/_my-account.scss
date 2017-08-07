@@ -59,11 +59,16 @@ form.register,
 		display: block;
 		max-width: 100%;
 		text-align: center;
+		background: #4267b2;
+		border-radius: 4px;
+		padding-left: 0;
 
 		> div {
-			display: inline-block;
-			transform: translateX(-25px);
+			display: block;
+			transform: none;
 			padding-top: 15px;
+			background: 10px 10px url(https://www.facebook.com/rsrc.php/v3/y8/r/bDryHPcaXAf.png);
+			background-repeat: no-repeat;
 		}
 	}
 

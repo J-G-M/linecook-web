@@ -159,6 +159,32 @@ add_filter( 'woocommerce_checkout_fields', function( $fields ) {
 });
 
 
+
+
+/**
+ * Remove Password strength check in woocommerce
+ */
+add_action( 'wp_print_scripts', function () {
+
+	if ( wp_script_is( 'wc-password-strength-meter', 'enqueued' ) ) {
+		wp_dequeue_script( 'wc-password-strength-meter' );
+	}
+}, 100 );
+
+add_filter( 'woocommerce_min_password_strength', create_function( '', 'return 2;' ) );
+
+
+
+
+
+add_filter('woocommerce_login_redirect', function ( $redirect_to ) {
+
+	$page = get_option('woocommerce_checkout_page_id');
+
+	return get_permalink($page);
+});
+
+
 /**
  * Add the field to the checkout
  */
